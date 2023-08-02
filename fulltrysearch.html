@@ -1,0 +1,518 @@
+<div class="stfxSB" id="stfxSB"></div>
+<script>
+    class Resource {
+        constructor(rn, name, desc, rad, links, sURL) {
+            this.rn = rn;
+            this.name = name;
+            this.desc = desc;
+            this.ph = "search " + this.name.toLowerCase() + "...";
+            this.rad = rad;
+            this.links = links;
+            this.sURL = sURL;
+        }
+    }
+    nov = new Resource("nov", "Novanet", "Find books, eBooks, journal articles, and more from Novanet member libraries.", [["All", ""], ["Books", "&mfacet=rtype,include,books,1,lk"], ["Articles", "&mfacet=rtype,include,articles,1,lk"]], [["Advanced", "https://stfx.novanet.ca/discovery/search?vid=01NOVA_STFX:STFX&lang=en&mode=advanced"], ["Worldcat", "https://stfx.on.worldcat.org/discovery"]], ["https://stfx.novanet.ca/discovery/search?query=any,contains,", "&tab=Everything&search_scope=Everything&vid=01NOVA_STFX:STFX&mode=simple", ""]);
+
+    dat = new Resource("dat", "Databases", "Find databases by name.", [], [["Browse Database A-Z List", "https://stfx.libguides.com/az.php"]], ["https://stfx.libguides.com/az.php?q="]);
+
+    jor = new Resource("jor", "Journals", "Find journals by title, subject, or ISSN using Browzine. This search will not find journal articles.", [["All", ""], ["Journals", "filter=journals&"], ["Subjects", "filter=subjects&"]], [["Novanet A-Z Search", "https://stfx.novanet.ca/discovery/jsearch?vid=01NOVA_STFX:STFX"]], ["https://browzine.com/libraries/3054/subjects?", "query=", "", ""]);
+
+    goo = new Resource("goo", "Google Scholar", "Find scholarly material, journal articles, book chapters, and more through Google Scholar. Adds “Check for full text @ X” links to your search results.", [], [["Advanced Search", "https://scholar.google.com/scholar?q=&inst=8335306489616302259#d=gs_asd&t=1652465087305"]], ["https://scholar.google.com/scholar?inst=8335306489616302259&q="]);
+
+    sbg = new Resource("sbg", "Subject Guides", "Find subject guides for all courses taught at StFX - start your research here!",[], [["Browse Subject Guides", "https://stfx.libguides.com/"]], ["https://stfx.libguides.com/srch.php?q="]);
+
+    faq = new Resource("faq", "FAQ", "Find the answers to the library's most common questions, requests, and issues.", [], [["Browse Frequently Asked Question", "https://stfx.libanswers.com/"]], ["https://stfx.libanswers.com/search/?t=0&amp;q="]);
+
+    crs = new Resource("crs", "Course Reserves", "Find assigned readings or books by faculty available to be borrowed through the library. Find the <a class='abut' href='/sites/default/files/documents/course_codes.pdf' target='_blank'>Course Code</a> for your class.", [], [["Browse Course Reserves", "https://stfx.novanet.ca/primo-explore/search?query=any,contains,NOVANET_CR000%3F*&tab=default_tab&search_scope=SFXMD_CR&sortby=title&vid=STFX"]], ["https://stfx.novanet.ca/primo-explore/search?query=any,contains,", "&tab=CourseReserves&search_scope=CourseReserves&vid=STFX&mode=simple"]);
+
+    sfx = new Resource("sfx", "StFX Scholar", "Find articles, theses, and other research outputs by StFX faculty and students.", [], [["Browse StFX Scholar", "https://stfxscholar.cairnrepo.org/"]], ["https://stfxscholar.cairnrepo.org/islandora/search/", "?type=dismax"]);
+
+    dgc = new Resource("dgc", "Digital Collections", "Find publications, history, and institutional documents produced by faculty, current students, and alumni at StFX.", [], [["Browse Digital Collections", "https://stfx.cairnrepo.org/islandora/object/stfx%3Aroot"]], ["https://stfx.cairnrepo.org/islandora/search/", "?type=dismax"]);
+
+    dtv = new Resource("dtv", "Dataverse", "Find research data created by StFX Faculty, researchers, and students.",[], [["Browse Dataverse", "https://dataverse.borealis.info/dataverse/stfx/"]], ["https://dataverse.scholarsportal.info/dataverse/stfx/?q="]);
+
+    uav = new Resource("uav", "University Archives", "Find materials that document the history of St. Francis Xavier University", [], [["Browse University Archives", "https://gencat.eloquent-systems.com/stfx-archives/public/"]], []);
+
+    const ress = [nov, dat, jor, goo, sbg, faq, crs, sfx, dgc, dtv, uav];
+
+    function showSearch(sel) {
+        var txt, nURL, scope, spec, tspec, i;
+        txt = document.getElementById("nsearch").value;
+        spec = document.getElementsByName("one");
+        for (i = 0; i < spec.length; i++){
+            if (spec[i].checked){
+                tspec = spec[i].value;
+            }
+        }
+        switch(sel.sURL.length){
+            case 1:
+                nURL = sel.sURL[0] + txt;
+                break;
+            case 2:
+                nURL = sel.sURL[0] + txt + sel.sURL[1];
+                break;
+            case 3:
+                nURL = sel.sURL[0] + txt + sel.sURL[1] + tspec + sel.sURL[2];
+                break;
+            case 4:
+                nURL = sel.sURL[0] + tspec + sel.sURL[1] + txt + sel.sURL[2] + sel.sURL[3];
+                break;
+        }
+        window.open(nURL, "_blank");
+    }
+
+    function buttons(box, q, tl){
+        var newBt;
+        newBt = document.createElement("button");
+        newBt.innerHTML = ress[q].name;
+        var s = "newdata(" + ress[q].rn + ")";
+        newBt.setAttribute("onClick", s);
+        newBt.setAttribute("class", "tabBt");
+        newBt.setAttribute("aria-role", "tab");
+        newBt.setAttribute("tabindex", "0");
+        if (tl == newBt.innerHTML){
+            newBt.setAttribute("style", "background-color: var(--stfx)");
+        }
+        box.appendChild(newBt);
+        return newBt.innerHTML.length * 10;
+    }
+
+    function listBt(box, q, tl, m){
+        var newBt, listEl;
+        listEl = document.createElement("li");
+        newBt = document.createElement("button");
+        newBt.innerHTML = ress[q].name;
+        var s = "newdata(" + ress[q].rn + ")";
+        newBt.setAttribute("onClick", s);
+        newBt.setAttribute("class", "tabBt");
+        newBt.setAttribute("tabindex", "0");
+        newBt.setAttribute("aria-role", "tab");
+        if (tl == newBt.innerHTML){
+            newBt.setAttribute("style", "background-color: var(--stfx)");
+            m.setAttribute("style", "background-color: var(--stfx)");
+        }
+        listEl.appendChild(newBt);
+        box.appendChild(listEl);
+    }
+
+    function dropDown(el, st){
+        switch(st){
+            case 0:
+                el.style.display = "none";
+                break;
+            case 1:
+                el.style.display = "block";
+                break;
+            case 2:
+                var dis = el.style.display;
+                if (dis == "block"){
+                    el.style.display = "none";
+                }
+                else {
+                    el.style.display = "block";
+                }
+                break;
+        }
+    }
+
+    function resizeHeader(sel){
+        var tabs, b, tw, u, drop, more, mList
+        tabs = document.getElementById("tabbs");
+        b = document.getElementById("stfxSB");
+        while (tabs.firstChild){
+            tabs.removeChild(tabs.firstChild);
+        }
+        tw = u = 0;
+        while ((b.clientWidth > (tw + 157)) && (u < ress.length)){
+            tw += buttons(tabs, u, sel.name, tw);
+            u ++;
+        }
+        if (u != ress.length){
+            drop = document.createElement("div");
+            drop.setAttribute("class", "drop");
+            drop.id = "moredrop";
+            drop.setAttribute("style", "display:inline-block");
+            more = document.createElement("button");
+            more.setAttribute("class", "tabBt");
+            more.setAttribute("tabindex", "0");
+            more.innerHTML = "More";
+            more.id = "moreBt";
+            mList = document.createElement("ul");
+            mList.id = 'extras';
+            for (u = u; u < ress.length; u++){
+                listBt(mList, u, sel.name, more);
+            }
+            drop.appendChild(more);
+            drop.appendChild(mList);
+            tabs.appendChild(drop);
+            drop.setAttribute("onmouseout" , "dropDown(document.getElementById('extras'), 0)");
+            drop.setAttribute("onmouseover" , "dropDown(document.getElementById('extras'), 1)");
+            drop.setAttribute("onfocus" , "dropDown(document.getElementById('extras'), 0)");
+            drop.setAttribute("onblur" , "dropDown(document.getElementById('extras'), 1)");
+            drop.setAttribute("onclick" , "dropDown(document.getElementById('extras'), 2)");
+        }
+    }
+
+    function makeHeader(sel = nov, b = document.getElementById("stfxSB")){
+        var headd, selName, selTabs, u, tw, more, drop, mList, img, sp;
+        headd = document.createElement("div");
+        headd.setAttribute("class", "headd");
+        selName = document.createElement("h2");
+        selName.setAttribute("class", "headLabel");
+        selName.innerHTML = "Search " + sel.name;
+        sp = document.createElement("span");
+        sp.appendChild(selName);
+        headd.appendChild(sp);
+        selTabs = document.createElement("div");
+        selTabs.setAttribute("class", "tabbs");
+        selTabs.id = "tabbs";
+        tw = u = 0;
+        while ((b.clientWidth > (tw + 160)) && (u < ress.length)){
+            tw += buttons(selTabs, u, sel.name, tw);
+            u ++;
+        }
+        if (u != ress.length){
+            drop = document.createElement("div");
+            drop.setAttribute("class", "drop");
+            drop.id = "moredrop";
+            drop.setAttribute("style", "display:inline-block");
+            more = document.createElement("button");
+            more.setAttribute("class", "tabBt");
+            more.innerHTML = "More";
+            more.id = "moreBt";
+            mList = document.createElement("ul");
+            mList.id = 'extras';
+            for (u = u; u < ress.length; u++){
+                listBt(mList, u, sel.name, more);
+            }
+            drop.appendChild(more);
+            drop.appendChild(mList);
+            selTabs.appendChild(drop);
+            drop.setAttribute("onmouseout" , "dropDown(document.getElementById('extras'), 0)");
+            drop.setAttribute("onmouseover" , "dropDown(document.getElementById('extras'), 1)");
+            drop.setAttribute("onclick" , "dropDown(document.getElementById('extras'), 2)");
+        }
+        headd.appendChild(selTabs);
+        return headd;
+    }
+
+    function fillContent(sel){
+        var sContent, newDesc, newSearch, newSubmit;
+        sContent = document.createElement("div");
+        sContent.setAttribute("class", "search");
+        newDesc = document.createElement("p");
+        newDesc.innerHTML = sel.desc;
+        sContent.appendChild(newDesc);
+        if (sel.sURL.length != 0){
+            var s = "showSearch(" + sel.rn + ")";
+            newSearch = document.createElement("input");
+            newSearch.setAttribute("tabindex", "0");
+            newSearch.setAttribute("aria-role", "searchbox");
+            newSearch.id = "nsearch";
+            newSearch.setAttribute("title", "Search Bar");
+            newSearch.placeholder = sel.ph;
+            newSubmit = document.createElement("button");
+            newSubmit.setAttribute("tabindex", "0");
+            newSubmit.innerHTML = "search";
+            newSubmit.setAttribute("onClick", s);
+            newSearch.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                newSubmit.click();
+                    }
+                }
+            )
+            sContent.appendChild(newSearch);
+            sContent.appendChild(newSubmit);
+        }
+        else{
+            newSearch = document.createElement("div");
+            newSearch.setAttribute("class", "archive");
+            sContent.appendChild(newSearch);
+        }
+        return sContent;
+    }
+
+    function addRadio(sel){
+        var newField, newLegend, s;
+        newField = document.createElement("fieldset");
+        newField.setAttribute("class", "radBts");
+        newLegend = document.createElement("legend");
+        newLegend.innerText = "Filter your search";
+        newLegend.setAttribute("class", "screen-reader-only");
+        newField.appendChild(newLegend);
+        s = "showSearch(" + sel + ")";
+        newField.setAttribute("onSubmit", s);
+        for (let i = 0; i < sel.rad.length; i++){
+            var newLabel, newRad;
+            newLabel = document.createElement("label");
+            newLabel.setAttribute("class", "radLbs");
+            newRad = document.createElement("input");
+            newRad.setAttribute("type", "radio");
+            newRad.setAttribute("tabindex", "0");
+            newRad.setAttribute("name", "one");
+            newRad.value = sel.rad[i][1];
+            if (i == 0){
+                newRad.setAttribute("checked", "true");
+            }
+            newLabel.appendChild(newRad);
+            newLabel.innerHTML += sel.rad[i][0];
+            newField.appendChild(newLabel);
+        }
+        return newField;
+    }
+
+    function addLinks(sel){
+        var newH;
+        newH = document.createElement("h3");
+        for (let o = 0; o < sel.links.length; o++){
+            var newLink = document.createElement("a");
+            newLink.innerHTML = sel.links[o][0];
+            newLink.href = sel.links[o][1];
+            newLink.setAttribute("tabindex", "0");
+            newLink.target="_blank";
+            if (o > 0){
+                newLink.setAttribute("class", "multilink");
+            }
+            newH.appendChild(newLink);
+        }
+        return newH;
+    }
+
+    function newdata(res=nov) {
+        var box = document.getElementById("stfxSB");
+        while(box.firstChild){
+            box.removeChild(document.getElementById("stfxSB").firstChild);
+        }
+        var s = "resizeHeader("+res.rn+")";
+        document.body.setAttribute("onResize", s);
+        box.appendChild(makeHeader(res, box));
+        box.appendChild(fillContent(res));
+        box.appendChild(addRadio(res));
+        box.appendChild(addLinks(res));
+    }
+
+    newdata();
+</script>
+<style>
+:root {
+	--stfx: #001b40;
+	--white: #ffffff;
+	--marigold: #d5a845;
+	--sky: #425f8e;
+	--light: #5e739e;
+	--pumpkin: #d35d33;
+	--leaf: #b1cd49;
+}
+.stfxSB {
+	background-color: var(--white);
+	height: 310px;
+	font-family: 'Lato',Helvetica Neue,Arial,Sans-serif !important;
+	line-height: normal !important;
+	color: black;
+	border: 3px solid var(--stfx);
+	border-top: none;
+}
+
+.headd{
+	background-color: var(--white);
+	color: var(--stfx);
+    position: relative;
+}
+.headd:before {
+	content: "";
+	background: var(--white);
+	position: absolute;
+	top: 0px;
+	left: -3px;
+	height: 95.5px;
+	width: 3px;
+}
+.headd:after {
+	content: "";
+	background: var(--white);
+	position: absolute;
+	top: 0px;
+	right: -3px;
+	height: 95.5px;
+	width: 3px;
+}
+h2.headLabel{
+	padding: 0px;
+	margin: 4px 8px;
+	font-size: 28px !important;
+	cursor: default;
+    text-transform: uppercase;
+	color: var(--stfx);
+	text-align: left;
+	height: 60px;
+	display: inline-block;
+	align-self: baseline;
+}
+.headd span{
+	display: inline-flex;
+}
+.tabbs{
+	overflow: hidden;
+	width: 100%;;
+}
+.tabBt{
+	width: auto;
+	font-weight: normal;
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	transition: all 50ms linear;
+	border: none;
+	border-right: 1px solid var(--white);
+	vertical-align: bottom;
+	outline: none;
+	background-color: var(--sky);
+	padding: 4px;
+}
+.tabBt:hover, .tabBt:focus{
+	background-color: var(--stfx);
+}
+.drop {
+	position: absolute;
+	z-index: 4;
+	padding: 0px;
+	border: none;
+}
+.drop ul{
+	display: none;
+	padding: 0px;
+	margin: -1px 0px 0px -1px;
+	width: 100%;
+	border-left: 1px solid var(--white);
+	border-right: 1px solid var(--white);
+	background-color: var(--sky);
+}
+.drop li button{
+	border: none;
+	border-bottom: 1px solid var(--white);
+	width: 100%;
+	text-align: left;
+	margin: 0px;
+	color: white;
+}
+.drop li{
+	list-style-type: none;
+	vertical-align: auto;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+.search{
+	padding: 12px;
+	border-top: 3px solid var(--stfx);
+}
+.stfxSB p{
+	height: 38px;
+	margin: 0px 0px 16px 0px;
+}
+.archive{
+	height: 50px;
+}
+.search input{
+    color: var(--stfx);
+	background-color: white;
+	display: inline-block;
+	padding: 4px 8px;
+	border: 3px solid var(--stfx);
+	border-radius: 5px;
+	margin: 10px 10px 10px 0px;
+	width: 70%;
+}
+.search input:focus{
+	outline: none;
+}
+.search button{
+	overflow: auto;
+	background-color: var(--stfx);
+	border: 3px solid var(--stfx);
+	border-radius: 5px;
+	padding: 4px 8px;
+	font-weight: bold;
+	color: var(--white);
+	font-size: 16px;
+	min-width: 48px;
+	line-height: 1.15;
+}
+.search button:hover, .search button:focus{
+	cursor: pointer;
+}
+.stfxSB h3 {
+	margin: 0px !important;
+	padding: 0px 12px !important;
+}
+.stfxSB a{
+	padding: 4px 4px 0px 4px;
+	text-align: left;
+	font-size: 16px;
+	font-weight: normal;
+    color: black;
+	margin: 8px 0px 0px 0px !important;
+}
+.stfxSB a:hover, .stfxSB a:focus{
+    cursor: pointer;
+	background-color: var(--sky);
+    color: black;
+}
+.stfxSB a:visited {
+	color: black !important;
+}
+.stfxSB a.multilink:before {
+    content: "|";
+    padding-right: 8px;
+}
+.radBts{
+	white-space: normal;
+	padding: 0px 0px 0px 12px;
+	height: 21px;
+    border: none;
+}
+label.radLbs {
+	cursor: pointer;
+	display: inline-block !important;
+	margin: 0px 5px 0px 0px !important;
+	font-weight: 500;
+}
+label.radLbs:hover {
+	cursor: pointer !important;
+}
+.radBts input[type=radio]{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: 2px solid var(--stfx);
+	border-radius: 10px;
+	background-color: var(--white);
+	transition: all 100ms linear;
+    text-align: left;
+	padding: 5px !important;
+	margin: 0px 2px -1px 4px;
+	opacity: 1 !important;
+	position: static;
+	display: inline-block;
+}
+.radBts input[type=radio]:hover, .radBts input[type=radio]:focus {
+	cursor: pointer;
+	background-color: var(--stfx);
+}
+.radBts input[type=radio]:checked {
+	background-color: var(--stfx);
+}
+
+.radBts input[type=radio]:before {
+	content: attr(label) !important;
+	display: none;
+}
+.screen-reader-only {
+	clip: rect(0 0 0 0); 
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap; 
+    width: 0px;
+}
+</style>

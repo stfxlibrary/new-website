@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<style type="text/css">
+	:root {
+		--stfx: #001b40;
+		--white: #ffffff;
+		--marigold: #d5a845;
+		--sky: #425f8e;
+		--light: #5e739e;
+		--pumpkin: #d35d33;
+		--leaf: #b1cd49;
+	}
+	
+	.stfxLibrarySearchBar {
+		border: 3px solid var(--stfx);
+		font-family: 'Lato',Helvetica Neue,Arial,Sans-serif;
+		box-sizing: border-box;
+		margin: 0 auto;
+		overflow: hidden;
+		color: black;
+		font-size: 16px;
+		background-color: white;
+		height: 292px;
+		min-width: 19.375rem;
+	}
+	.image-background {
+		display: block;
+		overflow: hidden;
+		border: none;
+		border-bottom: 3px solid var(--stfx);
+		margin: 0px 0px 0px 0px;	
+		background-color: #ffffff00;
+		height: 91px;
+	}
+	.labelz{
+		cursor: default;
+		text-transform: uppercase;
+		color: var(--stfx);
+		padding: 8px;
+		width: 100%;
+		text-align: left;
+		height: 66px;
+	}
+	
+	.labelz h2{
+		margin: 4px 0px;
+		color: var(--stfx);
+		padding: 0px;
+		font-size: 28px;
+	}
+	.dropbtn {
+		position: relative;
+		border-right: 1px solid var(--stfx) !important; 
+		background-color: var(--sky);
+	}
+	.dropbtn:hover {
+		cursor: pointer; 
+		background-color: var(--stfx) !important;
+	}
+	
+	.drophelp {
+		position: absolute;
+		display: inline-block;
+	}
+	
+	.archiveSpacer {
+		height: 7.75rem;
+		display: block;
+	}
+	.dropdown {
+		position: relative;
+		z-index: 10;
+		background-color: var(--sky);
+		padding: 0px;
+		border: none;
+		border-left: 1px solid var(--white);
+		border-right: 1px solid var(--white);
+	}
+	.dropdown ul{
+		padding: 0px;
+		margin: 0px;
+		max-width: 160px;
+		min-width: 90px;
+	}
+	.dropdown li button{
+		border-right: none;
+		border-left: none;
+		width: 100%;
+		text-align: left;
+	}
+	.dropdown li{
+		list-style-type: none;
+		border-bottom: 1px solid var(--white);
+		width: 100%;
+		line-height: 1.15;
+		margin-bottom: 0px;
+	}
+	.archiveSpacer {
+		height: 4.625rem;
+		display: block;
+	}
+	.tab h3 {
+		font-size: 16px;
+		line-height: 1.15;
+		color: #ffffff;
+		margin: 0px 0px;
+		padding: 4px 4px 2px 4px;
+		font-weight: normal;
+		text-transform: none;
+	}
+	.tabcontent h4 {
+		margin: 5px 0px 0px 10px;
+		padding: 2px 0px 3px 0px;
+		text-transform: none;
+		font-size: 16px;
+		font-weight: normal;
+		vertical-align: bottom;
+		width: 100%;
+	}
+	.tabcontent label {
+		font-weight: normal;
+	}
+	.tab {
+		overflow: hidden;
+		padding: 0px;
+		margin: 0 auto;
+		display: inline-block;
+		width: 100%;
+		/*background-color: var(--stfx);*/
+		line-height: 1;
+		color: white;
+	}
+	.tab button {
+		cursor: pointer;
+		transition: all 100ms linear;
+		border: none;
+		border-left: 1px solid var(--white); 
+		margin: 0px;
+		padding: 0px;
+		vertical-align: bottom;
+		outline: none;
+		background-color: var(--sky);
+		border-bottom: 1px solid var(--sky);
+	}
+	
+	
+	#defaultOpen {
+		margin-left: 0px;
+	}
+	.tab button:hover {
+		cursor: pointer; 
+		background-color: var(--stfx);
+		border-bottom: 1px solid var(--stfx);
+	}
+	.tab button.active {
+		background-color: var(--stfx);
+		color: white;
+		border-bottom: 1px solid var(--stfx);
+	}
+	.tab button.active h3{
+		color: white;
+	}
+	
+	
+	.tabcontent {
+		display: none;
+		padding: 10px;
+		overflow: auto;
+		height: auto;
+		background-color: var(--white);
+		color: black;
+		border: none;
+	}
+	.tabcontent p {
+		margin: 0px 0px 0px 0px;
+		padding: 0px 10px;
+		align-items: stretch;
+		text-align: left;
+		font-weight: normal;
+		height: 3em;
+	}
+	
+	.tabcontent form {
+		margin: 0px 0px 0px 10px;
+		text-align: left;
+		white-space: normal;
+	}
+	
+	.sbar {
+		margin: 10px;
+	}
+	.sbar:focus {
+		outline: none;
+	}
+	.sbar::-webkit-search-cancel-button {
+		-webkit-appearance: none;
+	}
+	.tabcontent input[type=text] {
+		color: black;
+		background-color: white;
+		display: inline-block;
+		padding: 4px 8px;
+		border: 3px solid var(--stfx);
+		border-radius: 5px;
+		margin: 10px 10px 10px 0px;
+		width: calc(100% - 7.25rem);
+	}
+	.tabcontent input[type=submit] {
+		overflow: auto;
+		background-color: var(--stfx);
+		border: 3px solid var(--stfx);
+		border-radius: 5px;
+		padding: 4.5px 8px;
+		font-family: 'Lato',Helvetica Neue,Arial,Sans-serif;
+		font-weight: bold;
+		color: var(--white);
+		font-size: 16px;
+		min-width: 72px;
+		height: fit-content;
+		margin: 10px 0px;
+	} 
+	
+	.tabcontent input[type=submit]:hover {
+		cursor: pointer; 
+		background-color: var(--stfx);
+	}
+	.tabcontent img {
+		margin: 0px 0px 0px 10px; 
+		max-height: 75px;
+		width: calc(100% - 30px);
+	}
+	
+	.tabcontent fieldset{
+		border: none;
+		margin: 0px 0px 5px 0px;
+		padding: 0px;
+	}
+	.tabcontent label {
+		cursor: pointer;
+		display: inline-block !important;
+		margin: 0px 5px 0px 0px;
+	}
+	input[type=radio].radioOptions {
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		border: 2px solid var(--stfx);
+		border-radius: 10px;
+		padding: 3.5px;
+		margin: 0px 4px 0px 2px;
+		background-color: var(--white);
+		transition: all 100ms linear;
+		text-align: left;
+		opacity: 1;
+		position: static;
+		display: inline-block;
+	}
+	
+	input[type=radio].radioOptions:hover  {
+		cursor: pointer;
+		background-color: var(--stfx);
+	}
+	
+	input[type=radio].radioOptions:checked {
+		background-color: var(--stfx);
+	}
+	input[type=radio].radioOptions:focus {
+		text-decoration: none;
+		outline: none;
+	}
+	input[type="radio"] + label::before {
+		content: attr(label) !important;
+		display: none;
+	}
+	
+	.abut {
+		text-align: left;
+		font-family: 'Lato',Helvetica Neue,Arial,Sans-serif;
+		font-weight: normal;
+		color: black;
+		margin: 0px;
+		padding: 3px 5px 4px 5px;
+		text-decoration: underline;
+	}
+	
+	.abut:hover {
+		cursor: pointer;
+		background-color: var(--sky);
+		color: white;
+	}
+	
+	.abut:visited {
+		color: black !important;
+	}
+	
+	.screen-reader-only {
+		clip: rect(0 0 0 0); 
+		clip-path: inset(50%);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		white-space: nowrap; 
+		width: 0px;
+	}
+	.tabcontent::-webkit-scrollbar {
+	  width: 10px;
+	  background: var(--stfx);
+	}
+	
+	.tabcontent::-webkit-scrollbar-track {
+	  border-radius: 10px;
+	}
+	 
+	.tabcontent::-webkit-scrollbar-thumb {
+	  background: var(--stfx); 
+	  border-radius: 10px;
+	}
+	
+	.tabcontent::-webkit-scrollbar-thumb:hover {
+	  background: var(--stfx); 
+	}
+	
+	@media only screen and (max-width: 770px) and (min-width: 505px){
+	
+	.stfxLibrarySearchBar {
+		height: 22rem;
+	}
+	.tabcontent p {
+		height: 5rem;
+	}
+	}
+	@media only screen and (max-width: 505px){
+	.stfxLibrarySearchBar {
+		height: 23rem;
+	}
+	
+	.tabcontent p {
+		height: 6rem;
+	}
+	.archiveSpacer {
+		height: 4.625rem;
+		display: block;
+	}
+	}
+	</style><title></title>
+<div class="stfxLibrarySearchBar" id="stfxLibrarySearchBar">
+	<div class="image-background">
+	<div class="labelz" role="header">
+	<h2 class="libel" id="novaSearch" style="display: block;">Search Novanet</h2>
+	
+	<h2 class="libel" id="journalSearch" style="display:none;">Search Journals</h2>
+	
+	<h2 class="libel" id="dbSearch" style="display:none;">Search Databases</h2>
+	
+	<h2 class="libel" id="dcSearch" style="display:none;">Search Digital Collections</h2>
+	
+	<h2 class="libel" id="stfxSearch" style="display:none;">Search StFX Scholar</h2>
+	
+	<h2 class="libel" id="sgSearch" style="display:none;">Search Subject Guides</h2>
+	
+	<h2 class="libel" id="gsSearch" style="display:none;">Search Google Scholar</h2>
+	
+	<h2 class="libel" id="dvSearch" style="display:none;">Search Dataverse</h2>
+	
+	<h2 class="libel" id="arSearch" style="display:none;">Search University Archives</h2>
+	
+	<h2 class="libel" id="crSearch" style="display: none;">Search Course Reserves</h2>
+	
+	<h2 class="libel" id="faqSearch" style="display:none;">Search our FAQ</h2>
+	</div>
+	
+	<div class="tab" role="navigation"><button class="tablinks active" id="defaultOpen" onclick="newTab(event, 'Novanet', 'novaSearch')"><h3>Novanet</h3></button><button class="tablinks" onclick="newTab(event, 'Databases', 'dbSearch')"><h3>Databases</h3></button><button class="tablinks" onclick="newTab(event, 'Journals', 'journalSearch')"><h3>Journals</h3></button><button class="tablinks" onclick="newTab(event, 'Google Scholar', 'gsSearch')"><h3>Google Scholar</h3></button><button class="tablinks" onclick="newTab(event, 'Subject Guides', 'sgSearch')"><h3>Subject Guides</h3></button><button class="tablinks" onclick="newTab(event, 'FAQ', 'faqSearch')"><h3>FAQ</h3></button><button class="tablinks" onclick="newTab(event, 'Course Reserves', 'crSearch')"><h3>Course Reserves</h3></button><button class="tablinks" id="stfxResources" onclick="newTab(event, 'StFX Scholar', 'stfxSearch')"><h3>StFX Scholar</h3></button><button class="tablinks" id="DCbut" onclick="newTab(event, 'Digital Collections', 'dcSearch')"><h3>Digital Collections</h3></button><button class="tablinks" onclick="newTab(event, 'University Archives', 'arSearch')"><h3>University Archives</h3></button><div class="drophelp"><button class="tablinks dropbtn" onclick="document.getElementById('dropdown').style.display='block'" onmouseover="document.getElementById('dropdown').style.display='block'" onmouseout="document.getElementById('dropdown').style.display='none'"><h3>More...</h3></button><div class="dropdown" id="dropdown" style="display: none;" onmouseover="document.getElementById('dropdown').style.display='block'" onmouseout="document.getElementById('dropdown').style.display='none'"> <ul><li><button class="tablinks" onclick="newTab(event, 'Novanet', 'novaSearch')"><h3>Novanet</h3></button></li><li><button class="tablinks" onclick="newTab(event, 'Databases', 'dbSearch')"><h3>Databases</h3></button></li><li><button class="tablinks" onclick="newTab(event, 'Journals', 'journalSearch')"><h3>Journals</h3></button></li><li><button class="tablinks" onclick="newTab(event, 'Google Scholar', 'gsSearch')"><h3>Google Scholar</h3></button></li><li><button class="tablinks" onclick="newTab(event, 'Subject Guides', 'sgSearch')"><h3>Subject Guides</h3></button></li><li><button class="tablinks" onclick="newTab(event, 'FAQ', 'faqSearch')"><h3>FAQ</h3></button></li><li><button class="tablinks" onclick="newTab(event, 'Course Reserves', 'crSearch')"><h3>Course Reserves</h3></button></li><li><button class="tablinks" id="stfxResources" onclick="newTab(event, 'StFX Scholar', 'stfxSearch')"><h3>StFX Scholar</h3></button></li><li><button class="tablinks" id="DCbut" onclick="newTab(event, 'Digital Collections', 'dcSearch')"><h3>Digital Collections</h3></button></li><li><button class="tablinks" onclick="newTab(event, 'University Archives', 'arSearch')"><h3>University Archives</h3></button></li></ul></div></div>
+	</div>
+	</div>
+	
+	<div class="tabcontent" id="Novanet" style="display: block;">
+	<p>Find books, eBooks, journal articles, and more from Novanet member libraries.</p>
+	
+	<form onsubmit="noSymbol(novas.value, novaspec.value, '&tab=Everything&search_scope=Everything');return false;" role="form" data-drupal-form-fields="novas,blanknova"><label class="screen-reader-only" for="novas">search novanet</label><input class="sbar" id="novas" name="novaterm" placeholder="search novanet..." role="search" type="text"><input class="searchbut" type="submit" value="search"><fieldset><legend class="screen-reader-only">Novanet filters</legend><label class="screen-reader-only" for="blanknova">all placeholder</label><input id="blanknova" name="novaspec" style="display:none" type="radio" value=""><label><input id="nnall" checked="checked" class="radioOptions" name="novaspec" onclick="document.getElementById('novas').placeholder='search novanet...';" type="radio" value="">All</input></label><label><input id="nnbooks" class="radioOptions" name="novaspec" onclick="document.getElementById('novas').placeholder='search books on novanet...';" type="radio" value="&mfacet=rtype,include,books,1,lk">Books</input></label><label><input id="articles" class="radioOptions" name="novaspec" onclick="document.getElementById('novas').placeholder='search articles on novanet...';" type="radio" value="&mfacet=rtype,include,articles,1,lk">Articles</input></label></fieldset></form>
+	
+	<h4><a class="abut" href="https://stfx.novanet.ca/discovery/search?vid=01NOVA_STFX:STFX&lang=en&mode=advanced" target="_blank">Advanced Search<span class="screen-reader-only"> (opens in a new tab)</span></a> | <a class="abut" href="https://stfx.on.worldcat.org/discovery" target="_blank">Worldcat<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="Course Reserves" style="display: none;">
+	<p>Find assigned readings or books by faculty available to be borrowed through the library. Find the <a class="abut" href="https://www.mystfx.ca/library/sites/library/files/2023-01/course_codes.pdf" target="_blank">Course Code</a> for your class.</p>
+	
+	<form onsubmit="noSymbol(crs.value, '', '&tab=CourseReserves&search_scope=CourseReserves');return false;" role="form" data-drupal-form-fields="crs"><label class="screen-reader-only" for="dbs">search course reserves</label><input class="sbar" id="crs" name="crterm" placeholder="search course reserves... (ex: NURS-233)" role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" href="https://stfx.novanet.ca/discovery/search?vid=01NOVA_STFX:STFX&tab=CourseReserves&search_scope=CourseReserves&query=any,contains,S*" target="_blank">Browse Course Reserves<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="Databases" style="display: none;">
+	<p>Find databases by name.</p>
+	
+	<form onsubmit="window.open('https://stfx.libguides.com/az.php?q='+ encodeURIComponent(dbterm.value));return false" role="form" data-drupal-form-fields="dbs"><label class="screen-reader-only" for="dbs">search database</label><input class="sbar" id="dbs" name="dbterm" placeholder="search list of database names..." role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" href="https://stfx.libguides.com/az.php" target="_blank">Browse Database A-Z List<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="Subject Guides" style="display: none;">
+	<p>Find subject guides for all courses taught at StFX – start your research here!</p>
+	
+	<form onsubmit="window.open('https://stfx.libguides.com/srch.php?q=' + encodeURIComponent(sgterm.value));return false" role="form" data-drupal-form-fields="sgs"><label class="screen-reader-only" for="sgs">search subject guides</label><input class="sbar" id="sgs" name="sgterm" placeholder="search subject guides..." role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" href="https://stfx.libguides.com/" target="_blank">Browse Subject Guides<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="Journals" style="display: none;">
+	<p>Find journals by title, subject, or ISSN using Browzine. This search will not find journal articles.</p>
+	
+	<form onsubmit="window.open('https://browzine.com/libraries/3054/subjects?'+ spec.value + 'query=' + encodeURIComponent(term.value));return false" role="form" data-drupal-form-fields="js"><label class="screen-reader-only" for="js">search journals</label><input class="sbar" id="js" name="term" placeholder="search list of journal titles..." role="search" type="text"><input class="searchbut" type="submit" value="search"><fieldset><legend class="screen-reader-only">all results, journals, or subjects</legend><label><input checked="checked" class="radioOptions" name="spec" type="radio" value="">All</label><label><input class="radioOptions" name="spec" type="radio" value="filter=journals&">Journals</label><label><input class="radioOptions" name="spec" type="radio" value="filter=subjects&">Subjects</label></fieldset></form>
+	<h4><a class="abut" href=" https://stfx.novanet.ca/discovery/jsearch?vid=01NOVA_STFX:STFX" target="_blank">Novanet A-Z Journal Search<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="Digital Collections" style="display: none;">
+	<p>Find publications, history, and institutional documents produced by faculty, current students, and alumni at StFX.</p>
+	
+	<form onsubmit="window.open('https://stfx.cairnrepo.org/islandora/search/'+ encodeURIComponent(dcterm.value) + '?type=dismax');return false" role="form" data-drupal-form-fields="dcs"><label class="screen-reader-only" for="dcs">search digital collections</label><input class="sbar" id="dcs" name="dcterm" placeholder="search digital collections..." role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" id="dca" href="https://stfx.cairnrepo.org/islandora/object/stfx%3Aroot" target="_blank">Browse Digital Collections<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	
+	</div>
+	
+	<div class="tabcontent" id="StFX Scholar" style="display: none;">
+	<p>Find articles, theses, and other research outputs by StFX faculty and students.</p>
+	
+	<form onsubmit="window.open('https://stfxscholar.cairnrepo.org/islandora/search/'+ encodeURIComponent(stfxterm.value) + '?type=dismax');return false" role="form" data-drupal-form-fields="stfxs"><label class="screen-reader-only" for="stfxs">search saint FX scholar</label><input class="sbar" id="stfxs" name="stfxterm" placeholder="search stfx scholar..." role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" id="stfxa" href="https://stfxscholar.cairnrepo.org/" target="_blank">Browse StFX Scholar<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="Dataverse" style="display: none;">
+	<p>Find research data created by StFX Faculty, Researchers, and students</p>
+	
+	<form onsubmit="window.open('https://borealisdata.ca/dataverse/stfx/?q='+ encodeURIComponent(dvterm.value));return false" role="form" data-drupal-form-fields="dvs"><label class="screen-reader-only" for="dvs">search data verse</label><input class="sbar" id="dvs" name="dvterm" placeholder="search dataverse..." role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" id="dva" href="https://borealisdata.ca/dataverse/stfx/" target="_blank">Browse Dataverse<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="University Archives" style="display: none;">
+	<p>Find materials that document the history of St. Francis Xavier University.</p>
+	<div class="archiveSpacer"></div>
+	<h4><a class="abut" id="ara" href="https://gencat.eloquent-systems.com/stfx-archives/public/" target="_blank">University Archives<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="Google Scholar" style="display: none;">
+	<p>Find scholarly material, journal articles, book chapters, and more through Google Scholar.  Adds “Check for full text @ X” links to your search results.</p>
+	
+	<form onsubmit="window.open('https://scholar.google.com/scholar?q='+ encodeURIComponent(gsterm.value) + '&inst=5140007463653430726');return false" role="form" data-drupal-form-fields="gss"><label class="screen-reader-only" for="gss">search google scholar and get full text via stfx</label><input class="sbar" id="gss" name="gsterm" placeholder="search google scholar..." role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" href="https://scholar.google.com/scholar?q=&inst=5140007463653430726#d=gs_asd" target="_blank">Advanced Search<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	
+	<div class="tabcontent" id="FAQ" style="display: none;">
+	<p>Find the answers to the library's most common questions, requests, and issues.</p>
+	
+	<form onsubmit="window.open('https://stfx.libanswers.com/search/?t=0&q='+ encodeURIComponent(faqterm.value));return false" role="form" data-drupal-form-fields="faqs"><label class="screen-reader-only" for="faqs">search F A Q</label><input class="sbar" id="faqs" name="faqterm" placeholder="search frequently asked questions..." role="search" type="text"><input class="searchbut" type="submit" value="search">&nbsp;</form>
+	<br/>
+	<h4><a class="abut" href="https://stfx.libanswers.com" target="_blank">Browse Frequently Asked Questions<span class="screen-reader-only"> (opens in a new tab)</span></a></h4>
+	</div>
+	</div>
+<script>
+	const box = document.getElementById("stfxLibrarySearchBar");
+	const tabLinks = document.getElementsByClassName("tablinks");
+	const topTabs = document.getElementsByClassName("tab")[0].children;
+	const dropBtn = document.getElementsByClassName("dropbtn")[0];
+	const dropTabs = document.getElementsByClassName("dropdown")[0].children[0].children;
+	const dropCL = dropBtn.clientWidth + 16;
+	const dropCH = dropBtn.clientHeight + 8;
+	const moreTabs = document.getElementsByClassName("dropdown")[0].children[0].children;
+	const tabLabels = document.getElementsByClassName("libel");
+	const tabContent = document.getElementsByClassName("tabcontent");
+	const tabWidths = Array(moreTabs.length);
+	var totalWidth = dropCL;
+	var i = 0;
+	var f = 0;
+	for (i = 0; i < moreTabs.length; i++){
+		totalWidth += topTabs[i].clientWidth;
+		tabWidths[i] = totalWidth;
+	}
+	var fullRunCount = 0;
+	var stepCount = 0;
+
+	function newTab(evt, tabName, labelName) {
+		for (i = 0; i < tabContent.length; i++) {
+			tabContent[i].style.display = "none";
+			stepCount++;
+			}
+		for (i = 0; i < tabLinks.length; i++) {
+			tabLinks[i].classList.remove("active");
+			stepCount++;
+			}
+		for (i = 0; i < tabLabels.length; i++) {
+			tabLabels[i].style.display = "none";
+			stepCount++;
+		}
+		document.getElementById(tabName).style.display = "block";	
+			stepCount++;
+		document.getElementById(labelName).style.display = "block";
+			stepCount++;
+		for (i=0; i<dropTabs.length; i++){
+			if (dropTabs[i].style.display == "inline-block" && dropTabs[i].children[0].innerText == tabName){
+				stepCount++;
+				dropBtn.classList.add("active");
+				stepCount++;
+				tabLinks[i].classList.add("active");
+				stepCount++;
+				dropTabs[i].children[0].classList.add("active");
+				stepCount++;
+			}
+			else if (dropTabs[i].style.display == "none" && dropTabs[i].children[0].innerText == tabName) {
+				stepCount++;
+				dropBtn.classList.remove("active");
+				stepCount++;
+				tabLinks[i].classList.add("active");
+				stepCount++;
+				dropTabs[i].children[0].classList.add("active");
+				stepCount++;
+			}
+		}
+	}
+
+	function noSymbol(nterm, nspec, nscope){
+			var term = encodeURIComponent(nterm);
+			var spec = nspec;
+			var scope = nscope;
+			var url = "https://stfx.novanet.ca/discovery/search?query=any,contains,"+term+scope+"&vid=01NOVA_STFX:STFX"+spec+"&lang=en&offset=0";
+			window.open(url);
+			return false;
+		}
+
+	function resizeHeader(){
+		var u = 0;
+		dropBtn.style.display = "inline-block";
+		stepCount++;
+		while (box.clientWidth > tabWidths[u]){
+			stepCount++;
+			topTabs[u].style.display = "inline-block";
+			stepCount++;
+			moreTabs[u].style.display = "none"
+			stepCount++;
+			if (topTabs[u].classList.contains("active")){
+				stepCount++;
+				dropBtn.classList.remove("active");
+				stepCount++;
+			}
+			u ++;
+			stepCount++;
+			if (u == moreTabs.length){
+				dropBtn.style.display = "none";
+				stepCount++;
+				return;
+			}
+		}
+		for (i = u; i < moreTabs.length; i++){
+			stepCount++;
+			topTabs[i].style.display = "none";
+			stepCount++;
+			moreTabs[i].style.display = "inline-block";
+			stepCount++;
+			if (moreTabs[i].children[0].classList.contains("active")){
+				dropBtn.classList.add("active");
+				stepCount++;
+			}
+		}
+		return;
+	}
+	var pastSize = 0;
+	function checkSize(){
+		if (fullRunCount % 100 == 0){
+			console.log(fullRunCount);
+			console.log(stepCount);
+		}
+		curSize = document.getElementById("stfxLibrarySearchBar").clientWidth;
+		stepCount++;
+		if (document.getElementsByClassName("tab")[0].clientHeight > dropCH || Math.abs(curSize - pastSize) > 10) {
+			stepCount++;
+			pastSize = curSize;
+			stepCount++;
+			resizeHeader();
+			stepCount++;
+		}
+		fullRunCount++;
+		return;
+	}
+
+	resizeHeader();
+	document.getElementsByTagName("body")[0].onresize = checkSize; 
+</script>
