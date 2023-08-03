@@ -1,82 +1,94 @@
-<div class="service-list" id="stfx-services">
-</div>
-<style>
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-.service-list {
-  display: flex;
-  color: black !important;
-  width: 100%;
-  height: 100%;
-  flex-flow: row wrap;
-  align-content: stretch;
-  padding: 1rem;
-}
-.service-list-section {
-  flex: 1 0 auto;
-  float: left;
-  max-width: calc(100% / 2);
-  min-width: calc(100% / 4);
-  padding: 0.5rem;
-}
-h2.service-list-item-header {
-  color: black !important;
-  text-decoration: underline solid #425f8e 2px;
-  vertical-align: baseline;
-  margin: 0.5rem 0.5rem 0.5rem 0rem;
-  font-size: 16px;
-  line-height: 1;
-}
-.service-list-section ul {
-  padding-left: 0px;
-  margin: 0px;
-  float: inline-start;
-}
-li.service-list-item-child {
-  list-style: disc;
-  margin-bottom: 0.25rem;
-  line-height: 16px;
-  color: black !important;
-}
-
-li.service-list-item-child:hover {
-  text-decoration: underline solid #5e739e 2px;
-}
-
-a.service-list-item-child-link {
-  color: black !important;
-  line-height: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  margin-left: -4px;
-}
-.title-list {
-  height:100%;
-  display: block;
-  float: right;
-  width: calc(100% - 85px);
-}
-.list-icon {
-  height: 75px;
-  width: 75px;
-}
-.span-icon {
-  height: 100%;
-  display: block;
-  float: left;
-  width: 75px;
-}
-.page-title {
-  margin: 0.25rem !important;
-}
-body:not(.show-banner) .section-content > :first-child {
-  margin-top: 1rem !important;
-}
-.layout__region .block {
-  margin-bottom: 0.25rem !important;
-}
-
+<div class="service-list" id="stfx-services"></div>
+<style type="text/css">
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+  .service-list {
+    display: flex;
+    color: black !important;
+    width: 100%;
+    height: 100%;
+    flex-flow: row wrap;
+    align-content: stretch;
+    padding: 3rem 0rem;
+  }
+  .service-list-section {
+    flex: 1 0 auto;
+    float: left;
+    max-width: calc(100% / 2);
+    min-width: calc(100% / 4);
+    padding: 0.5rem;
+  }
+  h2.service-list-item-header {
+    font-family: inherit;
+    font-size: 0.9375rem;
+    line-height: 1.125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #000000;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    vertical-align: baseline;
+    margin: 0.5rem 0.5rem 0.5rem 0rem;
+    line-height: 1;
+  }
+  h2.service-list-item-header::after {
+    margin-bottom: 1.25rem;
+    content: '';
+    display: block;
+    width: 4.125rem;
+    border-bottom: 3px solid #D5A845;
+    margin: 0.625rem 0 0 0;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+  }
+  .service-list-section ul {
+    padding-left: 0px;
+    margin: 0px, 0px, 0px, 0.25rem;
+    float: inline-start;
+  }
+  li.service-list-item-child {
+    list-style: disc;
+    margin-bottom: 0.25rem;
+    line-height: 16px;
+    color: black !important;
+  }
+  li.service-list-item-child:hover {
+    text-decoration: underline solid #5e739e 2px;
+  }
+  a.service-list-item-child-link {
+    color: black !important;
+    line-height: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: -4px;
+  }
+  .title-list {
+    height:100%;
+    display: block;
+    float: right;
+    width: calc(100% - 85px);
+  }
+  .list-icon {
+    height: 75px;
+    width: 75px;
+  }
+  .span-icon {
+    height: 100%;
+    display: block;
+    float: left;
+    width: 75px;
+  }
+  .page-title {
+    margin: 0.25rem !important;
+  }
+  body:not(.show-banner) .section-content > :first-child {
+    margin-top: 1rem !important;
+  }
+  .layout__region .block {
+    margin-bottom: 0.25rem !important;
+  }
   @media only screen and (max-width: 768px) {
     .service-list-section {
       flex: 1 0 auto;
@@ -84,7 +96,8 @@ body:not(.show-banner) .section-content > :first-child {
       max-width: calc(100% / 1);
       min-width: calc(100% / 1);
     }
-  } 
+  }
+
 </style>
 <script>
   const cur_url = window.location.origin;
@@ -107,7 +120,6 @@ body:not(.show-banner) .section-content > :first-child {
         all_urls[i][0] = Array(main_urls[i].children[0].children[0].innerHTML.trim(), main_urls[i].children[0].href.replace(cur_url, ""));
       }
     }
-
     var div = document.getElementById("stfx-services");
     for (i = 0; i < all_urls.length; i++){
       var new_section = document.createElement("div");
@@ -127,25 +139,27 @@ body:not(.show-banner) .section-content > :first-child {
       list_link.setAttribute("class", "service-list-item-link");
       list_header.innerHTML = all_urls[i][0][0];
       list_header.setAttribute("class", "service-list-item-header");
-      switch (String(all_urls[i][0][0]).toLowerCase()){
-        case "about":
-          list_icon.setAttribute("src", "/sites/default/files/images/about-icon.png");
-          break;
-        case "borrow":
-          list_icon.setAttribute("src", "/sites/default/files/images/borrow-icon.png");
-          break;
-        case "find":
-          list_icon.setAttribute("src", "/sites/default/files/images/find-icon.png");
-          break;
-        case "help":
-          list_icon.setAttribute("src", "/sites/default/files/images/help-icon.png");
-          break;
-        case "research":
-          list_icon.setAttribute("src", "/sites/default/files/images/research-icon.png");
-          break;
-        case "services":
-          list_icon.setAttribute("src", "/sites/default/files/images/services-icon.png");
-          break;
+      var groupTitle = String(all_urls[i][0][0]).toLowerCase().split(" ");
+      if (groupTitle.includes("about")){
+        list_icon.setAttribute("src", "/sites/default/files/images/about-icon.png");
+      }
+      else if (groupTitle.includes("borrow")){
+        list_icon.setAttribute("src", "/sites/default/files/images/borrow-icon.png");
+      }
+      else if (groupTitle.includes("find")){
+        list_icon.setAttribute("src", "/sites/default/files/images/find-icon.png");
+      }
+      else if (groupTitle.includes("help")){
+        list_icon.setAttribute("src", "/sites/default/files/images/help-icon.png");
+      }
+      else if (groupTitle.includes("research")){
+        list_icon.setAttribute("src", "/sites/default/files/images/research-icon.png");
+      }
+      else if (groupTitle.includes("services")){
+        list_icon.setAttribute("src", "/sites/default/files/images/services-icon.png");
+      }
+      else if (groupTitle.includes("quick")){
+        list_icon.setAttribute("src", "/sites/default/files/images/noun-save-1287286-001B40.png");
       }
       list_link.appendChild(list_header);
       icon_link.appendChild(list_icon);
