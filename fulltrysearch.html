@@ -23,13 +23,13 @@
 
     faq = new Resource("faq", "FAQ", "Find the answers to the library's most common questions, requests, and issues.", [], [["Browse Frequently Asked Question", "https://stfx.libanswers.com/"]], ["https://stfx.libanswers.com/search/?t=0&amp;q="]);
 
-    crs = new Resource("crs", "Course Reserves", "Find assigned readings or books by faculty available to be borrowed through the library. Find the <a class='abut' href='/sites/default/files/documents/course_codes.pdf' target='_blank'>Course Code</a> for your class.", [], [["Browse Course Reserves", "https://stfx.novanet.ca/primo-explore/search?query=any,contains,NOVANET_CR000%3F*&tab=default_tab&search_scope=SFXMD_CR&sortby=title&vid=STFX"]], ["https://stfx.novanet.ca/primo-explore/search?query=any,contains,", "&tab=CourseReserves&search_scope=CourseReserves&vid=STFX&mode=simple"]);
+    crs = new Resource("crs", "Course Reserves", "Find assigned readings or books by faculty available to be borrowed through the library. Find the <a class='abut' href='/sites/default/files/documents/course_codes.pdf' target='_blank'>Course Code</a> for your class.", [], [["Browse Course Reserves", "https://stfx.novanet.ca/discovery/search?vid=01NOVA_STFX:STFX&tab=CourseReserves&search_scope=CourseReserves&query=any,contains,S*"]], ["https://stfx.novanet.ca/primo-explore/search?query=any,contains,", "&tab=CourseReserves&search_scope=CourseReserves&vid=STFX&mode=simple"]);
 
     sfx = new Resource("sfx", "StFX Scholar", "Find articles, theses, and other research outputs by StFX faculty and students.", [], [["Browse StFX Scholar", "https://stfxscholar.cairnrepo.org/"]], ["https://stfxscholar.cairnrepo.org/islandora/search/", "?type=dismax"]);
 
     dgc = new Resource("dgc", "Digital Collections", "Find publications, history, and institutional documents produced by faculty, current students, and alumni at StFX.", [], [["Browse Digital Collections", "https://stfx.cairnrepo.org/islandora/object/stfx%3Aroot"]], ["https://stfx.cairnrepo.org/islandora/search/", "?type=dismax"]);
 
-    dtv = new Resource("dtv", "Dataverse", "Find research data created by StFX Faculty, researchers, and students.",[], [["Browse Dataverse", "https://dataverse.borealis.info/dataverse/stfx/"]], ["https://dataverse.scholarsportal.info/dataverse/stfx/?q="]);
+    dtv = new Resource("dtv", "Dataverse", "Find research data created by StFX Faculty, researchers, and students.",[], [["Browse Dataverse", "https://borealisdata.ca/dataverse/stfx/"]], ["https://dataverse.scholarsportal.info/dataverse/stfx/?q="]);
 
     uav = new Resource("uav", "University Archives", "Find materials that document the history of St. Francis Xavier University", [], [["Browse University Archives", "https://gencat.eloquent-systems.com/stfx-archives/public/"]], []);
 
@@ -154,15 +154,7 @@
     }
 
     function makeHeader(sel = nov, b = document.getElementById("stfxSB")){
-        var headd, selName, selTabs, u, tw, more, drop, mList, img, sp;
-        headd = document.createElement("div");
-        headd.setAttribute("class", "headd");
-        selName = document.createElement("h2");
-        selName.setAttribute("class", "headLabel");
-        selName.innerHTML = "Search " + sel.name;
-        sp = document.createElement("span");
-        sp.appendChild(selName);
-        headd.appendChild(sp);
+        var selTabs, u, tw, more, drop, mList, img;
         selTabs = document.createElement("div");
         selTabs.setAttribute("class", "tabbs");
         selTabs.id = "tabbs";
@@ -192,8 +184,18 @@
             drop.setAttribute("onmouseover" , "dropDown(document.getElementById('extras'), 1)");
             drop.setAttribute("onclick" , "dropDown(document.getElementById('extras'), 2)");
         }
-        headd.appendChild(selTabs);
-        return headd;
+        return selTabs;
+    }
+
+    function fillLabel(sel){
+        var selName, headDiv;
+        selName = document.createElement("h2");
+        selName.setAttribute("class", "headLabel");
+        selName.innerHTML = "Search " + sel.name;
+        headDiv = document.createElement("div");
+        headDiv.setAttribute("class", "headd");
+        headDiv.appendChild(selName);
+        return headDiv;
     }
 
     function fillContent(sel){
@@ -233,9 +235,11 @@
     }
 
     function addRadio(sel){
-        var newField, newLegend, s;
+        var newField, newLegend, s, radDiv;
+        radDiv = document.createElement("div");
+        radDiv.setAttribute("class", "radBts");
         newField = document.createElement("fieldset");
-        newField.setAttribute("class", "radBts");
+        newField.setAttribute("class", "radBtsField");
         newLegend = document.createElement("legend");
         newLegend.innerText = "Filter your search";
         newLegend.setAttribute("class", "screen-reader-only");
@@ -258,7 +262,8 @@
             newLabel.innerHTML += sel.rad[i][0];
             newField.appendChild(newLabel);
         }
-        return newField;
+        radDiv.appendChild(newField);
+        return radDiv;
     }
 
     function addLinks(sel){
@@ -286,6 +291,7 @@
         var s = "resizeHeader("+res.rn+")";
         document.body.setAttribute("onResize", s);
         box.appendChild(makeHeader(res, box));
+        box.appendChild(fillLabel(res));
         box.appendChild(fillContent(res));
         box.appendChild(addRadio(res));
         box.appendChild(addLinks(res));
@@ -309,15 +315,18 @@
 	font-family: 'Lato',Helvetica Neue,Arial,Sans-serif !important;
 	line-height: normal !important;
 	color: black;
-	border: 3px solid var(--stfx);
-	border-top: none;
+	border: none;
+    min-width: 405px;
 }
 
 .headd{
 	background-color: var(--white);
 	color: var(--stfx);
     position: relative;
+    border: 3px solid var(--stfx);
+    border-bottom: none;
 }
+/*
 .headd:before {
 	content: "";
 	background: var(--white);
@@ -336,6 +345,7 @@
 	height: 95.5px;
 	width: 3px;
 }
+*/
 h2.headLabel{
 	padding: 0px;
 	margin: 4px 8px;
@@ -402,8 +412,9 @@ h2.headLabel{
 	padding: 0px 0px 0px 0px;
 }
 .search{
-	padding: 12px;
-	border-top: 3px solid var(--stfx);
+	padding: 0px 12px;
+    border-right: 3px solid var(--stfx);
+    border-left: 3px solid var(--stfx);
 }
 .stfxSB p{
 	height: 38px;
@@ -442,7 +453,9 @@ h2.headLabel{
 }
 .stfxSB h3 {
 	margin: 0px !important;
-	padding: 0px 12px !important;
+	padding: 12px 12px !important;
+    border: 3px solid var(--stfx);
+    border-top: none;
 }
 .stfxSB a{
 	padding: 4px 4px 0px 4px;
@@ -465,6 +478,10 @@ h2.headLabel{
     padding-right: 8px;
 }
 .radBts{
+    border-right: 3px solid var(--stfx);
+    border-left: 3px solid var(--stfx);
+}
+.radBtsField {
 	white-space: normal;
 	padding: 0px 0px 0px 12px;
 	height: 21px;
@@ -514,5 +531,8 @@ label.radLbs:hover {
     position: absolute;
     white-space: nowrap; 
     width: 0px;
+}
+.layout__region .block {
+  margin-bottom: 1rem !important;
 }
 </style>
