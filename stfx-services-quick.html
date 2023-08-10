@@ -1,0 +1,282 @@
+<div class="service-list" id="stfx-services"></div>
+<style type="text/css">
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+  .service-list {
+    display: flex;
+    color: black !important;
+    width: 100%;
+    height: 100%;
+    flex-flow: row wrap;
+    align-content: stretch;
+    padding: 3rem 0rem;
+  }
+  .service-list-section {
+    flex: 1 0 auto;
+    float: left;
+    max-width: calc(100% / 2);
+    min-width: calc(100% / 4);
+    padding: 0.5rem;
+  }
+  .quick-list-section {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+  .quick-list-item-child::before {
+    margin-bottom: 1.25rem;
+    content: '';
+    display: block;
+    width: 500%;
+    border-bottom: 1px solid #D5D5D5;
+    margin: 0.625rem 0 0 -1rem;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+    position: relative;
+    bottom: 1rem;
+  }
+  h2.service-list-item-header {
+    font-family: inherit;
+    font-size: 0.9375rem;
+    line-height: 1.125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #000000;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    vertical-align: baseline;
+    margin: 0.5rem 0.5rem 0.5rem 0rem;
+    line-height: 1;
+  }
+  h2.quick-list-item-header {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    line-height: 1.125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #000000;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    vertical-align: baseline;
+    margin: 0.5rem 0.5rem 0.5rem 0rem;
+    line-height: 1;
+  }
+  h2.service-list-item-header::after, h2.quick-list-item-header::after, .quick-list-section::after {
+    margin-bottom: 1.25rem;
+    content: '';
+    display: block;
+    width: calc(100% + 1rem);
+    border-bottom: 3px solid #D5A845;
+    margin: 0.625rem 0 0 0;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+  }
+  .service-list-section ul {
+    padding-left: 0px;
+    margin: 0px, 0px, 0px, 0.25rem;
+    float: inline-start;
+  }
+  .quick-list-items {
+    display: flex;
+    padding: 0rem;
+    margin: 0rem;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  li.service-list-item-child {
+    list-style: disc;
+    margin-bottom: 0.25rem;
+    line-height: 16px;
+    color: black !important;
+  }
+  .quick-list-item-child {
+    list-style: none;
+    float: left;
+    text-decoration: none;
+    color: black !important;
+    padding: 0.5rem 1.5rem;
+  }
+  li.service-list-item-child:hover {
+    text-decoration: underline solid #5e739e 2px;
+  }
+  .quick-list-item-child:hover {
+    text-decoration: underline solid #5e739e 2px;
+  }
+  a.service-list-item-child-link {
+    color: black !important;
+    line-height: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: -4px;
+  }
+  a.quick-list-item-child-link {
+    color: black !important;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .title-list {
+    height:100%;
+    display: block;
+    float: right;
+    width: calc(100% - 85px);
+  }
+  .title-quick {
+    padding: 0rem;
+  }
+  .list-icon {
+    height: 75px;
+    width: 75px;
+  }
+  .span-icon {
+    height: 100%;
+    display: block;
+    float: left;
+    width: 75px;
+  }
+  .page-title {
+    margin: 0.25rem !important;
+  }
+  body:not(.show-banner) .section-content > :first-child {
+    margin-top: 1rem !important;
+  }
+  .layout__region .block {
+    margin-bottom: 0.25rem !important;
+  }
+  @media only screen and (max-width: 768px) {
+    .service-list-section {
+      flex: 1 0 auto;
+      float: left;
+      max-width: calc(100% / 1);
+      min-width: calc(100% / 1);
+    }
+  }
+
+</style>
+<script>
+  const cur_url = window.location.origin;
+  function updateList(){
+    var main_urls = document.getElementsByClassName("in-multicolumn de-simple-sidebar-menu")[0].getElementsByClassName("menu-item--level-1");
+    var all_urls = Array(main_urls.length);
+    for (i = 0; i < main_urls.length; i++){
+      if (main_urls[i].getElementsByTagName("ul").length != 0){
+        var secondary_urls = main_urls[i].getElementsByTagName("ul")[0].getElementsByClassName("menu-item--level-2");
+        var these_urls = Array(secondary_urls.length);
+        for (j = 0; j < secondary_urls.length; j++){
+          these_urls[j] = Array(secondary_urls[j].children[0].children[0].innerHTML.trim().replace("amp;", ""), secondary_urls[j].children[0].href.replace(cur_url, ""));
+        }
+        all_urls[i] = Array(2);
+        all_urls[i][0] = Array(main_urls[i].children[0].children[0].innerHTML.trim(), main_urls[i].children[0].href.replace(cur_url, ""));
+        all_urls[i][1] = these_urls;
+      }
+      else{
+        all_urls[i] = Array(1);
+        all_urls[i][0] = Array(main_urls[i].children[0].children[0].innerHTML.trim(), main_urls[i].children[0].href.replace(cur_url, ""));
+      }
+    }
+    var div = document.getElementById("stfx-services");
+    for (i = 0; i < all_urls.length; i++){
+      var groupTitle = String(all_urls[i][0][0]).toLowerCase().split(" ");
+      if (groupTitle.includes("quick")){
+        var new_section = document.createElement("div");
+        var list_header = document.createElement("h2");
+        var list_link = document.createElement("a");
+        var list_span = document.createElement("span");
+        list_span.setAttribute("class", "title-quick");
+        new_section.setAttribute("class", "quick-list-section");
+        list_link.setAttribute("href", all_urls[i][0][1]);
+        list_link.setAttribute("class", "quick-list-item-link");
+        list_header.innerHTML = all_urls[i][0][0];
+        list_header.setAttribute("class", "quick-list-item-header");
+        list_link.appendChild(list_header);
+        list_span.appendChild(list_link);
+        if (all_urls[i].length > 1){
+          var new_list = document.createElement("div");
+          new_list.setAttribute("class", "quick-list-items");
+          for (j = 0; j < all_urls[i][1].length; j ++){
+            var list_item = document.createElement("div");
+            list_item.setAttribute("class", "quick-list-item-child");
+            var list_item_link = document.createElement("a");
+            list_item_link.setAttribute("class", "quick-list-item-child-link");
+            list_item_link.setAttribute("href", all_urls[i][1][j][1]);
+            list_item_link.innerHTML = all_urls[i][1][j][0];
+            list_item.appendChild(list_item_link);
+            new_list.appendChild(list_item);
+          }
+          list_span.appendChild(new_list);
+          new_section.appendChild(list_span);
+        }
+        else {
+          new_section.appendChild(list_span);
+        }
+        div.prepend(new_section);
+      }
+      else {
+        var new_section = document.createElement("div");
+        var list_header = document.createElement("h2");
+        var list_link = document.createElement("a");
+        var icon_span = document.createElement("span");
+        var list_span = document.createElement("span");
+        var list_icon = document.createElement("img");
+        var icon_link = document.createElement("a");
+        list_icon.setAttribute("class", "list-icon");
+        list_icon.setAttribute("alt", "");
+        icon_span.setAttribute("class", "span-icon");
+        list_span.setAttribute("class", "title-list");
+        new_section.setAttribute("class", "service-list-section");
+        list_link.setAttribute("href", all_urls[i][0][1]);
+        icon_link.setAttribute("href", all_urls[i][0][1]);
+        list_link.setAttribute("class", "service-list-item-link");
+        list_header.innerHTML = all_urls[i][0][0];
+        list_header.setAttribute("class", "service-list-item-header");
+        if (groupTitle.includes("about")){
+          list_icon.setAttribute("src", "/sites/default/files/images/about-icon.png");
+        }
+        else if (groupTitle.includes("borrow")){
+          list_icon.setAttribute("src", "/sites/default/files/images/borrow-icon.png");
+        }
+        else if (groupTitle.includes("find")){
+          list_icon.setAttribute("src", "/sites/default/files/images/find-icon.png");
+        }
+        else if (groupTitle.includes("help")){
+          list_icon.setAttribute("src", "/sites/default/files/images/help-icon.png");
+        }
+        else if (groupTitle.includes("research")){
+          list_icon.setAttribute("src", "/sites/default/files/images/research-icon.png");
+        }
+        else if (groupTitle.includes("services")){
+          list_icon.setAttribute("src", "/sites/default/files/images/services-icon.png");
+        }
+        list_link.appendChild(list_header);
+        icon_link.appendChild(list_icon);
+        icon_span.appendChild(icon_link);
+        new_section.appendChild(icon_span);
+        list_span.appendChild(list_link);
+        if (all_urls[i].length > 1){
+          var new_list = document.createElement("ul");
+          for (j = 0; j < all_urls[i][1].length; j ++){
+            var list_item = document.createElement("li");
+            list_item.setAttribute("class", "service-list-item-child");
+            var list_item_link = document.createElement("a");
+            list_item_link.setAttribute("class", "service-list-item-child-link");
+            list_item_link.setAttribute("href", all_urls[i][1][j][1]);
+            list_item_link.innerHTML = all_urls[i][1][j][0];
+            list_item.appendChild(list_item_link);
+            new_list.appendChild(list_item);
+          }
+          list_span.appendChild(new_list);
+          new_section.appendChild(list_span);
+        }
+        else {
+          new_section.appendChild(list_span);
+        }
+        div.appendChild(new_section);
+      }
+    }
+  }
+  setTimeout(updateList, 500);
+
+</script>
