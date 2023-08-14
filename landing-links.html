@@ -1,0 +1,58 @@
+<div id="landing-links"></div>
+<script>
+const cur_url = window.location.origin;
+const real_url = window.location.pathname;
+function updateList(){
+    var main_urls = document.getElementsByClassName("in-multicolumn de-simple-sidebar-menu")[0].getElementsByClassName("menu-item--active-trail");
+    var all_urls = Array(main_urls.length);
+        for (i = 0; i < main_urls.length; i++){
+                if (main_urls[i].getElementsByTagName("ul").length != 0 && main_urls[i].children[0].href.replace(cur_url, "") == real_url){
+                        var secondary_urls = main_urls[i].getElementsByTagName("ul")[0].getElementsByClassName("menu-item--level-2");
+                        var these_urls = Array(secondary_urls.length);
+                        for (j = 0; j < secondary_urls.length; j++){
+                                these_urls[j] = Array(secondary_urls[j].children[0].children[0].innerHTML.trim().replace("amp;", ""), secondary_urls[j].children[0].href.replace(cur_url, ""));
+                        }
+                        all_urls[i] = Array(2);
+                        all_urls[i][0] = Array(main_urls[i].children[0].children[0].innerHTML.trim(), main_urls[i].children[0].href.replace(cur_url, ""));
+                        all_urls[i][1] = these_urls;
+                }
+                else{
+                        all_urls[i] = Array(1);
+                        all_urls[i][0] = Array(main_urls[i].children[0].children[0].innerHTML.trim(), main_urls[i].children[0].href.replace(cur_url, ""));
+                }
+        }
+    var bigdiv = document.getElementById("landing-links");
+    console.log(all_urls);
+    for (i = 0; i < all_urls[0][1].length; i++){
+        var link = document.createElement("div");
+        link.setAttribute("class", "block");
+        link.classList.add("in-multicolumn");
+        link.classList.add("block-layout-builder");
+        link.classList.add("block-inline-block--image-teaser-horizontal");
+        var alink = document.createElement("a");
+        alink.setAttribute("href", all_urls[0][1][i][1]);
+        alink.setAttribute("rel", "bookmark");
+        var container = document.createElement("div");
+        container.setAttribute("class", "content-container");
+        var field = document.createElement("div");
+        field.setAttribute("class", "field");
+        field.classList.add("field--name-field-title");
+        field.classList.add("field--type-string");
+        field.classList.add("field--label-visually_hidden");
+        var title = document.createElement("div");
+        title.setAttribute("class", "field__label");
+        title.classList.add("visually-hidden");
+        title.innerText = "Title";
+        var item = document.createElement("div");
+        item.setAttribute("class", "field__item");
+        item.innerText = all_urls[0][1][i][0];
+        field.appendChild(title);
+        field.appendChild(item);
+        container.appendChild(field);
+        alink.appendChild(container);
+        link.appendChild(alink);
+        bigdiv.appendChild(link);
+    }
+}
+setTimeout(updateList, 500);
+</script>
