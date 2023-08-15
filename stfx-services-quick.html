@@ -1,7 +1,8 @@
-<div class="service-list" id="stfx-services"></div>
-<style type="text/css">
-  *, *:before, *:after {
-    box-sizing: border-box;
+<!--CSS for Quick Links and Navigation List AND Javascript for Navigation List auto updates -->
+<div class="service-list" id="stfx-services">&nbsp;
+</div>
+<style type="text/css">*, *:before, *:after {
+  box-sizing: border-box;
   }
   .service-list {
     display: flex;
@@ -37,7 +38,7 @@
     -webkit-transition: width 1s;
     transition: width 1s;
     /*position: relative;*/
-    bottom: 1rem; 
+    bottom: 1rem;
   }
   h2.service-list-item-header {
     font-family: inherit;
@@ -90,11 +91,9 @@
     flex-flow: row wrap;
     justify-content: space-between;
   }
-
   .quick-list-items > * {
     width: calc(100%/2);
   }
-
   li.service-list-item-child {
     list-style: disc;
     margin-bottom: 0.25rem;
@@ -162,7 +161,6 @@
       min-width: calc(100% / 1);
     }
   }
-
 </style>
 <script>
   const cur_url = window.location.origin;
@@ -188,106 +186,69 @@
     var div = document.getElementById("stfx-services");
     for (i = 0; i < all_urls.length; i++){
       var groupTitle = String(all_urls[i][0][0]).toLowerCase().split(" ");
-      if (groupTitle.includes("quick")){
-        var new_section = document.createElement("div");
-        var list_header = document.createElement("h2");
-        var list_link = document.createElement("a");
-        var list_span = document.createElement("span");
-        list_span.setAttribute("class", "title-quick");
-        new_section.setAttribute("class", "quick-list-section");
-        list_link.setAttribute("href", all_urls[i][0][1]);
-        list_link.setAttribute("class", "quick-list-item-link");
-        list_header.innerHTML = all_urls[i][0][0];
-        list_header.setAttribute("class", "quick-list-item-header");
-        list_link.appendChild(list_header);
-        list_span.appendChild(list_link);
-        if (all_urls[i].length > 1){
-          var new_list = document.createElement("div");
-          new_list.setAttribute("class", "quick-list-items");
-          for (j = 0; j < all_urls[i][1].length; j ++){
-            var list_item = document.createElement("div");
-            list_item.setAttribute("class", "quick-list-item-child");
-            var list_item_link = document.createElement("a");
-            list_item_link.setAttribute("class", "quick-list-item-child-link");
-            list_item_link.setAttribute("href", all_urls[i][1][j][1]);
-            list_item_link.innerHTML = all_urls[i][1][j][0];
-            list_item.appendChild(list_item_link);
-            new_list.appendChild(list_item);
-          }
-          list_span.appendChild(new_list);
-          new_section.appendChild(list_span);
+      var new_section = document.createElement("div");
+      var list_header = document.createElement("h2");
+      var list_link = document.createElement("a");
+      var icon_span = document.createElement("span");
+      var list_span = document.createElement("span");
+      var list_icon = document.createElement("img");
+      var icon_link = document.createElement("a");
+      list_icon.setAttribute("class", "list-icon");
+      list_icon.setAttribute("alt", "");
+      icon_span.setAttribute("class", "span-icon");
+      list_span.setAttribute("class", "title-list");
+      new_section.setAttribute("class", "service-list-section");
+      list_link.setAttribute("href", all_urls[i][0][1]);
+      icon_link.setAttribute("href", all_urls[i][0][1]);
+      list_link.setAttribute("class", "service-list-item-link");
+      list_header.innerHTML = all_urls[i][0][0];
+      list_header.setAttribute("class", "service-list-item-header");
+      if (groupTitle.includes("about")){
+        list_icon.setAttribute("src", "/sites/default/files/images/about-icon.png");
+      }
+      else if (groupTitle.includes("borrow")){
+        list_icon.setAttribute("src", "/sites/default/files/images/borrow-icon.png");
+      }
+      else if (groupTitle.includes("find")){
+        list_icon.setAttribute("src", "/sites/default/files/images/find-icon.png");
+      }
+      else if (groupTitle.includes("help")){
+        list_icon.setAttribute("src", "/sites/default/files/images/help-icon.png");
+      }
+      else if (groupTitle.includes("research")){
+        list_icon.setAttribute("src", "/sites/default/files/images/research-icon.png");
+      }
+      else if (groupTitle.includes("services")){
+        list_icon.setAttribute("src", "/sites/default/files/images/services-icon.png");
+      }
+      else if (groupTitle.includes("collections")){
+        list_icon.setAttribute("src", "/sites/default/files/images/quick-link-icon.png");
+      }
+      list_link.appendChild(list_header);
+      icon_link.appendChild(list_icon);
+      icon_span.appendChild(icon_link);
+      new_section.appendChild(icon_span);
+      list_span.appendChild(list_link);
+      if (all_urls[i].length > 1){
+        var new_list = document.createElement("ul");
+        for (j = 0; j < all_urls[i][1].length; j ++){
+          var list_item = document.createElement("li");
+          list_item.setAttribute("class", "service-list-item-child");
+          var list_item_link = document.createElement("a");
+          list_item_link.setAttribute("class", "service-list-item-child-link");
+          list_item_link.setAttribute("href", all_urls[i][1][j][1]);
+          list_item_link.innerHTML = all_urls[i][1][j][0];
+          list_item.appendChild(list_item_link);
+          new_list.appendChild(list_item);
         }
-        else {
-          new_section.appendChild(list_span);
-        }
-        div.prepend(new_section);
+        list_span.appendChild(new_list);
+        new_section.appendChild(list_span);
       }
       else {
-        var new_section = document.createElement("div");
-        var list_header = document.createElement("h2");
-        var list_link = document.createElement("a");
-        var icon_span = document.createElement("span");
-        var list_span = document.createElement("span");
-        var list_icon = document.createElement("img");
-        var icon_link = document.createElement("a");
-        list_icon.setAttribute("class", "list-icon");
-        list_icon.setAttribute("alt", "");
-        icon_span.setAttribute("class", "span-icon");
-        list_span.setAttribute("class", "title-list");
-        new_section.setAttribute("class", "service-list-section");
-        list_link.setAttribute("href", all_urls[i][0][1]);
-        icon_link.setAttribute("href", all_urls[i][0][1]);
-        list_link.setAttribute("class", "service-list-item-link");
-        list_header.innerHTML = all_urls[i][0][0];
-        list_header.setAttribute("class", "service-list-item-header");
-        if (groupTitle.includes("about")){
-          list_icon.setAttribute("src", "/sites/default/files/images/about-icon.png");
-        }
-        else if (groupTitle.includes("borrow")){
-          list_icon.setAttribute("src", "/sites/default/files/images/borrow-icon.png");
-        }
-        else if (groupTitle.includes("find")){
-          list_icon.setAttribute("src", "/sites/default/files/images/find-icon.png");
-        }
-        else if (groupTitle.includes("help")){
-          list_icon.setAttribute("src", "/sites/default/files/images/help-icon.png");
-        }
-        else if (groupTitle.includes("research")){
-          list_icon.setAttribute("src", "/sites/default/files/images/research-icon.png");
-        }
-        else if (groupTitle.includes("services")){
-          list_icon.setAttribute("src", "/sites/default/files/images/services-icon.png");
-        }
-        else if (groupTitle.includes("highlighted")){
-          list_icon.setAttribute("src", "/sites/default/files/images/quick-link-icon.png");
-        }
-        list_link.appendChild(list_header);
-        icon_link.appendChild(list_icon);
-        icon_span.appendChild(icon_link);
-        new_section.appendChild(icon_span);
-        list_span.appendChild(list_link);
-        if (all_urls[i].length > 1){
-          var new_list = document.createElement("ul");
-          for (j = 0; j < all_urls[i][1].length; j ++){
-            var list_item = document.createElement("li");
-            list_item.setAttribute("class", "service-list-item-child");
-            var list_item_link = document.createElement("a");
-            list_item_link.setAttribute("class", "service-list-item-child-link");
-            list_item_link.setAttribute("href", all_urls[i][1][j][1]);
-            list_item_link.innerHTML = all_urls[i][1][j][0];
-            list_item.appendChild(list_item_link);
-            new_list.appendChild(list_item);
-          }
-          list_span.appendChild(new_list);
-          new_section.appendChild(list_span);
-        }
-        else {
-          new_section.appendChild(list_span);
-        }
-        div.appendChild(new_section);
+        new_section.appendChild(list_span);
       }
+      div.appendChild(new_section);
     }
   }
   setTimeout(updateList, 500);
-
 </script>
