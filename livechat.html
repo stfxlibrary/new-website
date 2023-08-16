@@ -29,8 +29,6 @@
         while (livebox.className != "in-multicolumn block block-layout-builder block-inline-block--basic"){
             livebox = livebox.parentElement;
         }
-        console.log(hoursbox);
-        console.log(livebox);
         livebox.remove();
         hoursbox.insertAdjacentElement("beforeend", livebox);
         hoursbox.style.display = "inline-block";
