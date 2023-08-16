@@ -111,7 +111,7 @@
             tabs.removeChild(tabs.firstChild);
         }
         tw = u = 0;
-        while ((b.clientWidth > (tw + 157)) && (u < ress.length)){
+        while (((b.clientWidth > (tw + 170)) && (u < (ress.length - 1))) || ((b.clientWidth > (tw + 135)) && (u == (ress.length - 1)))){
             tw += buttons(tabs, u, sel.name, tw);
             u ++;
         }
@@ -147,7 +147,7 @@
         selTabs.setAttribute("class", "tabbs");
         selTabs.id = "tabbs";
         tw = u = 0;
-        while ((b.clientWidth > (tw + 160)) && (u < ress.length)){
+        while (((b.clientWidth > (tw + 170)) && (u < (ress.length - 1))) || ((b.clientWidth > (tw + 135)) && (u == (ress.length - 1)))){
             tw += buttons(selTabs, u, sel.name, tw);
             u ++;
         }
