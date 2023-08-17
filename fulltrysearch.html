@@ -1,13 +1,33 @@
+<!-- JavaScript and CSS for StFX Library Custom Search Box code can be found here: https://github.com/stfxlibrary/new-website/blob/main/fulltrysearch.html -->
 <div class="stfxSB" id="stfxSB"></div>
 <script>
     class Resource {
         constructor(rn, name, desc, rad, links, sURL) {
+            // resource name (use the variable name)
             this.rn = rn;
+            // Title case resource name
             this.name = name;
+            // Short description of resource
             this.desc = desc;
             this.ph = "search " + this.name.toLowerCase() + "...";
+            // radio information for filtering searches
+            // two-dimensional array of buttons, containing their labels and values
+            // i.e. [["All", ""], ["Journals", "filter=journals&"], ["Subjects", "filter=subjects&"]] are journals' filters
+            // can normally be found in the url when filtering searches
             this.rad = rad;
+            // links to browse resource or other relavent sites
+            // two-dimensional array of links with their inner text and href
             this.links = links;
+            // query URL for searches
+            // one-dimensional array with sections of query URL
+            // arrays of size 1 will only attach the query afterwards
+            // i.e. ["https://scholar.google.com/scholar?inst=8335306489616302259&q="] for google scholar
+            // arrays of size 2 will attach the query between the second string
+            // i.e. ["https://stfx.novanet.ca/primo-explore/search?query=any,contains,", "&tab=CourseReserves&search_scope=CourseReserves&vid=STFX&mode=simple"] for course reserves
+            // arrays of size 3 will attach the query first and then the filter
+            // i.e. ["https://stfx.novanet.ca/discovery/search?query=any,contains,", "&tab=Everything&search_scope=Everything&vid=01NOVA_STFX:STFX&mode=simple", ""] for novanet
+            // arrays of size 4 will attach the filter first and then the query
+            // i.e. ["https://browzine.com/libraries/3054/subjects?", "query=", "", ""] for journals
             this.sURL = sURL;
         }
     }
@@ -21,6 +41,7 @@
 
     crs = new Resource("crs", "Course Reserves", "Find assigned readings or books by faculty available to be borrowed through the library. Find the <a class='abut' href='/sites/default/files/documents/course_codes.pdf' target='_blank'>Course Code</a> for your class.", [], [["Browse Course Reserves", "https://stfx.novanet.ca/discovery/search?vid=01NOVA_STFX:STFX&tab=CourseReserves&search_scope=CourseReserves&query=any,contains,S*"]], ["https://stfx.novanet.ca/primo-explore/search?query=any,contains,", "&tab=CourseReserves&search_scope=CourseReserves&vid=STFX&mode=simple"]);
 
+    // ress is the array of all the resources, make sure to add your new resource or remove any old ones!
     const ress = [nov, dat, jor, goo, crs];
 
     function showSearch(sel) {

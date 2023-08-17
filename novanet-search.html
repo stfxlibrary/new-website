@@ -1,0 +1,99 @@
+<script>
+    function searchSTFXNovanet() {
+        document.getElementById("stfxNovanetQuery").value = "any,contains," + document.getElementById("stfxNovanetQueryTemp").value.replace(/[,]/g, " ");
+        document.forms["searchForm"].submit();
+    }
+    </script>
+    <link rel="stylesheet" href="https://use.typekit.net/upe1ljq.css">
+    <style>
+        :root {
+            --stfx: #001b40;
+            --white: #ffffff;
+            --marigold: #d5a845;
+            --sky: #425f8e;
+            --light: #5e739e;
+            --pumpkin: #d35d33;
+            --leaf: #b1cd49;
+        }
+    div#novanet-stfx-search {
+    background-color: var(--white);
+    background-image:none;
+    color: var(--stfx);
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    margin-top: 0px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border: 3px solid var(--stfx);
+    }
+    
+    
+    div#novanet-stfx-search a {
+    color: var(--stfx);
+    }
+    
+    h2.novanet-search-label {
+        color: var(--stfx);
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 22rem;
+    }
+    
+    
+    input#stfxNovanetQueryTemp {
+    border-radius: 3px;
+    width: calc(100% - 30rem);
+    }
+    
+    
+    /* Make breadcrumb links larger */
+    #s-lib-admin-bc .breadcrumb, #s-lib-bc .breadcrumb {
+    font-size: 12px;
+    }
+
+    .form-control {
+        border: 3px solid var(--stfx);
+        border-radius: 3px;
+        height: auto !important;
+    }
+
+    button.btn.btn-default {
+        background: var(--stfx);
+        border: 3px solid var(--stfx);
+        border-radius: 3px;
+        color: white;
+        width: 5.3rem;
+    }
+    button.btn.btn-default:hover {
+        cursor: pointer;
+    }
+    </style>
+    
+    <div class="container s-lib-banner-public" id="novanet-stfx-search">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 12col-sm-12 col-xs-12">
+              <form class="form-horizontal" action="https://stfx.novanet.ca/discovery/search?query=" enctype="application/x-www-form-urlencoded; charset=utf-8" id="simple" method="get" name="searchForm" onsubmit="searchSTFXNovanet()" target="_self">
+            <div class="form-group" id="stfx-novanet-form">
+              <div class="input-group" style="/*! display: inline-block; */width: 100%;">
+                  <h2 class="novanet-search-label" style="display: inline-block;width: 50%;">Search Novanet</h2>
+                      <!-- Customizable Parameters -->
+                      <input type="hidden" name="vid" value="01NOVA_STFX:STFX">
+                      <input type="hidden" name="tab" value="Everything">
+                      <input type="hidden" name="search_scope" value="Everything">
+                      <input type="hidden" name="lang" value="en">
+                      <!-- Fixed parameters -->
+                      <input type="hidden" name="query" id="stfxNovanetQuery">
+                <input class="form-control" id="stfxNovanetQueryTemp" name="stfxNovanetQueryTemp" placeholder="Search anything" title="Search StFX Library for books, articles, and more" type="text" style="display: inline-block;width: 30%;float:none;">
+                <!-- Search Button -->
+              <button class="btn btn-default" type="button" onclick="searchSTFXNovanet()">Go!</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center search-xtra"><a href="https://stfx.novanet.ca/discovery/search?vid=01NOVA_STFX:STFX&amp;lang=en&amp;mode=advanced">Advanced Search</a></div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center search-xtra"><a href="https://stfx.novanet.ca/discovery/search?vid=01NOVA_STFX:STFX&amp;tab=CourseReserves&amp;search_scope=CourseReserves&amp;query=any,contains,S*">Course Reserves</a></div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center search-xtra"><a href="https://stfx.novanet.ca/discovery/account?vid=01NOVA_STFX:STFX">My Library Account</a></div>
+      </div>
+    </div>
