@@ -1,0 +1,91 @@
+<script>springshare_widget_config_1692797642803 = { path: 'subjects', link_text: 'Subjects' };</script><div id="s-lg-widget-1692797642803"></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://lgapi-ca.libapps.com/widgets.php?site_id=877&widget_type=4&load_type=2&widget_embed_type=1&output_format=1&list_format=2&drop_text=Select+a+Subject...&sort_type=0&widget_title=Subject+List&widget_height=250&widget_width=100%25&widget_link_color=%232954d1&guide_published=2&show_guides=1&enable_hierarchy=0&window_target=2&config_id=1692797642803";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","s-lg-widget-script-1692797642803");</script>
+<script>
+    function fixDropdown(){
+        const searchForm = document.getElementById("s-lg-frm-subject-widget-1692797642803");
+        var select = document.getElementById("s-lg-sel-subject-widget-1692797642803");
+        var selectOptions = select.options;
+        var selectLabel = select.previousElementSibling;
+        selectLabel.innerText = "Start your research here: ";
+        selectLabel.id = "s-lg-lbl-subject-widget-1692797642803";
+        selectOptions[0].value = "https://stfx.libguides.com/";
+        var selectButton = select.nextElementSibling;
+        selectButton.id = "s-lg-btn-subject-widget-1692797642803";
+        for (i = 1; i < selectOptions.length; i++){
+            /*
+            console.log(selectOptions[i]);
+            console.log(selectOptions[i].value);
+            console.log(String(selectOptions[i].value).includes("sb.php"));
+            console.log(selectOptions[i].innerHTML.includes("&nbsp;"));
+            console.log(selectOptions[i].innerHTML);
+            console.log(selectOptions[i].innerText);
+            */
+            if (String(selectOptions[i].value).includes("sb.php")){
+                selectOptions[i].style.display = "none";
+            }
+            else{
+                selectOptions[i].innerHTML = String(selectOptions[i].innerHTML).replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", "");
+                selectOptions[i].setAttribute("class", "s-lg-opt-subject-widget-1692797642803");
+            }
+        }
+
+    }
+    setTimeout(fixDropdown, 500);
+</script>
+<style>
+    :root {
+        --stfx: #001b40;
+        --white: #ffffff;
+        --marigold: #d5a845;
+        --sky: #425f8e;
+        --light: #5e739e;
+        --pumpkin: #d35d33;
+        --leaf: #b1cd49;
+    }
+    #s-lg-widget-1692797642803 {
+        height: min-content !important;
+        font-size: larger !important;
+        margin-top: 1rem;
+    }
+    #s-lg-frm-subject-widget-1692797642803 {
+        width: max-content;
+        margin: 0 auto;
+        line-height: 1rem;
+    }
+    #s-lg-lbl-subject-widget-1692797642803 {
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+    #s-lg-sel-subject-widget-1692797642803 {
+        /* styling */
+        background-color: white;
+        outline: 2px solid var(--stfx);
+        border-radius: 4px 0px 0px 4px;
+        display: inline-block;
+        font: inherit;
+        padding: 0.125em 0.25em 0.125em 0.25em;
+        margin: 0;
+        border: none;
+        border-right: 0.25em solid white;
+    }
+    #s-lg-sel-subject-widget-1692797642803::after {
+        display: none;
+    }
+
+    #s-lg-btn-subject-widget-1692797642803 {
+        background-color: var(--stfx);
+        outline: 2px solid var(--stfx);
+        border-radius: 0px 4px 4px 0px;
+        display: inline-block;
+        font: inherit;
+        padding: 0.125em 0.25em 0.125em 0.25em;
+        margin: 0;
+        color: white;
+        border:none;
+    }
+
+    #s-lg-btn-subject-widget-1692797642803:hover {
+        cursor: pointer;
+    }
+</style>
