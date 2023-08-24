@@ -6,6 +6,8 @@ hours.html is the simple javascript from the springshare widget with today's hou
 
 landing-links.html fetches the children of the current page from the menu, and displays them as horizonal links
 
+libguide-dropdown.html uses the subject dropdown widget from springshare, removes the subject searches, and styles to match
+
 livechat.html is the livehcat to be inline with hours. margaret has the original livechat code, although i think i only added the new script below the html, and fixed the live chat hours link
 
 novanet-search.html is the first draft of restyling for novanet only search for above libguides, fulltrysearch.html works for the libguides search box
