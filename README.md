@@ -1,21 +1,50 @@
 # new-website
 
-fulltrysearch.html is current search box but uses lots of js but tabs can be added and removed easier
+## fulltrysearch.html 
 
-hours.html is the simple javascript from the springshare widget with today's hours
+Current search box, uses lots of js but tabs can be added and removed easier using the Resource class.
 
-landing-links.html fetches the children of the current page from the menu, and displays them as horizonal links
+## hours.html 
 
-libguide-dropdown.html uses the subject dropdown widget from springshare, removes the subject searches, and styles to match
+The simple javascript from the springshare widget with the libcal javascript for today's hours Todays hours information can be found [here](https://ask.springshare.com/libcal/faq/1275#daily). Libguide content box widget code information can be found [here](https://ask.springshare.com/libguides/faq/848#link-widget).
 
-livechat.html is the livehcat to be inline with hours. margaret has the original livechat code, although i think i only added the new script below the html, and fixed the live chat hours link
+## landing-links.html 
 
-novanet-search.html is the first draft of restyling for novanet only search for above libguides, fulltrysearch.html works for the libguides search box
+Fetches the children of the current page from the menu, and displays them as horizonal links
 
-quicklinks.html hardcoded wuick links for library home page
+## libguide-dropdown.html 
 
-search.html older version of search box with hardcoded html
+Uses the subject dropdown widget from springshare, removes the subject searches, and styles to match
 
-stfx-searvices-quick.html is the current service list code with styling for quicklinks
+**Widget Configuration:**
 
-stfx-services.html is link list taking from first and second level menu items
+Look & Feel
+- Output format: Simple List - \<ul\>, \<li\> tags
+    - Embed Type: JavaScript Code
+    - Link target: New window
+- List Format: Drop-down menu with links
+- Hierarchy: Unchecked
+
+Search
+- Status: Only subjects with published guides
+- Associations: Include Guide titles with link
+
+## livechat.html 
+
+The livehcat to be inline with hours. margaret has the original livechat code, although i think i only added the new script below the html, and fixed the live chat hours link
+
+## quicklinks.html 
+
+Hardcoded quick links for library home page
+
+## search.html 
+
+Older version of search box with hardcoded html
+
+## stfx-searvices-quick.html 
+
+Current service list code with styling for quicklinks
+
+## stfx-services.html 
+
+Link list taking from first and second level menu items without quick links
