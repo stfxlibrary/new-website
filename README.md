@@ -12,6 +12,10 @@ The simple javascript from the springshare widget with the libcal javascript for
 
 Fetches the children of the current page from the menu, and displays them as horizonal links
 
+## liaison-librarians.html
+
+Displays liaison librarians in alphabetical order. Easy to edit librarian information with the Librarian class. Copy and paste an existing librarian and replace their information with the  new information. 
+
 ## libguide-dropdown.html 
 
 Uses the subject dropdown widget from springshare, removes the subject searches, and styles to match
