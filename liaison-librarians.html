@@ -1,231 +1,214 @@
-<!-- Javascript and CSS for Liaison Librarian page -->
-<!-- Code can be found here: https://github.com/stfxlibrary/new-website/blob/main/liaison-librarians.html -->
-<div id="liaison-librarians"></div>
+<!-- Javascript and CSS for Liaison Librarian page --><!-- Code can be found here: https://github.com/stfxlibrary/new-website/blob/main/liaison-librarians.html -->
+<div id="liaison-librarians">&nbsp;
+</div>
 <script>
-    class Librarian{
-        constructor(libName, libSubjects, libPhoto, libEmail, libPhone, libRole){
-            this.libName = libName;
-            this.libSubjects = libSubjects;
-            this.libPhoto = libPhoto;
-            this.libEmail = libEmail;
-            this.libPhone = libPhone;
-            this.libRole = libRole;
-        }
+  class Librarian{
+    constructor(libName, libSubjects, libPhoto, libEmail, libPhone, libRole){
+      this.libName = libName;
+      this.libSubjects = libSubjects;
+      this.libPhoto = libPhoto;
+      this.libEmail = libEmail;
+      this.libPhone = libPhone;
+      this.libRole = libRole;
     }
-
-    const grace = new Librarian("Grace Bourret", 
-    /*subjects*/["Art", "Anthropology", "Development Studies", "Sociology", "Women's & Gender St."],
-    /*picture*/"/sites/default/files/images/Library%20-%20Grace%20Bourret.png", 
-    /*email*/"gbourret@stfx.ca", 
-    /*phone number*/"(902) 867-4535", 
-    /*role/position*/"Diversity, Outreach, & Engagement Librarian");
-    
-    const kaitlin = new Librarian("Kaitlin Fuller", 
-    /*subjects*/["Education", "Health", "Human Kinetics", "Human Nutrition", "Nursing"],
-    /*picture*/"/sites/default/files/images/Library%20-%20Kaitlin_Fuller_300x400_web.png", 
-    /*email*/"kfuller@stfx.ca", 
-    /*phone number*/"(902) 867-2407", 
-    /*role/position*/"Health Sciences & Scholarly Communications Librarian");
-    
-    const laurinda = new Librarian("Laurinda Matheson", 
-    /*subjects*/["Catholic Studies", "Celtic Studies", "Classical Studies", "English", "Music", "Philosophy", "Religious Studies"],
-    /*picture*/"/sites/default/files/images/LaurindaMatheson.png", 
-    /*email*/"lmmathes@stfx.ca", 
-    /*phone number*/"(902) 867-4883", 
-    /*role/position*/"Special Collections & Research Services Librarian");
-    
-    const margaret = new Librarian("Margaret Vail", 
-    /*subjects*/["Business", "Chemistry", "Computer Science", "Engineering", "Math & Statistics", "Physics"],
-    /*picture*/"/sites/default/files/images/Library%20-%20Margaret%20Vail%20-%20headshot%20cropped%20-%202023.png", 
-    /*email*/"mvail@stfx.ca", 
-    /*phone number*/"(902) 867-4869", 
-    /*role/position*/"Systems & Data Services Librarian");
-    
-    const susan = new Librarian("Susan Cameron", 
-    /*subjects*/["Adult Education", "Economics", "History", "Political Science", "Public Policy & Gov"],
-    /*picture*/"/sites/default/files/images/Susan%20Cameron.png", 
-    /*email*/"scameron@stfx.ca", 
-    /*phone number*/"(902) 867-4535", 
-    /*role/position*/"Collections Librarian");
-    
-    const samantha = new Librarian("Samantha Read", 
-    /*subjects*/["Aquatic Resources", "Biology", "Climate & Env", "Earth Sciences", "Modern Languages", "Psychology"],
-    /*picture*/"", 
-    /*email*/"", 
-    /*phone number*/"", 
-    /*role/position*/"Academic Librarian");
-
-    const librarians = [grace, susan, kaitlin, laurinda, samantha, margaret]
-
-    function displayLibrarians() {
-        var libContainer = document.getElementById("liaison-librarians");
-        var librarian, libHeader, libInfo, libPic, libPicSpan, libContact, libMailto, mailto, libSubs, libSub, i, o;
-        for (i = 0; i < librarians.length; i++) {
-            librarian = document.createElement("div");
-            librarian.setAttribute("class", "librarian-section");
-            libHeader = document.createElement("h2");
-            libHeader.setAttribute("class", "librarian-full-name");
-            libHeader.classList.add("group--contact");
-            libHeader.innerText = librarians[i].libName;
-            libInfo = document.createElement("p");
-            libInfo.setAttribute("class", "librarian-position");
-            libInfo.innerText = librarians[i].libRole;
-            libPicSpan = document.createElement("span");
-            libPic = document.createElement("img");
-            libPic.setAttribute("class", "librarian-picture");
-            libPicSpan.setAttribute("class", "librarian-picture");
-            libPic.setAttribute("src", librarians[i].libPhoto);
-            libPicSpan.appendChild(libPic);
-            libContactSpan = document.createElement("span");
-            libContact = document.createElement("p");
-            libContact.setAttribute("class", "librarian-contacts");
-            libContactSpan.setAttribute("class", "librarian-contacts");
-            libContact.innerHTML = librarians[i].libPhone;
-            libMailto = document.createElement("a");
-            libMailto.setAttribute("class", "librarian-contacts");
-            libMailto.innerText = librarians[i].libEmail;
-            mailto = "mailto:" + librarians[i].libEmail;
-            libMailto.setAttribute("href", mailto);
-            libContactSpan.appendChild(libContact);
-            libContactSpan.appendChild(libMailto);
-            libSubs = document.createElement("ol");
-            for (o = 0; o < librarians[i].libSubjects.length; o++) {
-                libSub = document.createElement("li");
-                libSub.innerText = librarians[i].libSubjects[o];
-                libSubs.appendChild(libSub);
-            }
-            librarian.appendChild(libHeader);
-            librarian.appendChild(libInfo);
-            librarian.appendChild(libPicSpan);
-            librarian.appendChild(libContactSpan);
-            librarian.appendChild(libSubs);
-            libContainer.appendChild(librarian);
-        }
+  }
+  const grace = new Librarian("Grace Bourret", 
+                              /*subjects*/["Art", "Anthropology", "Development Studies", "Sociology", "Women's & Gender St."],
+                              /*picture*/"/sites/default/files/images/Library%20-%20Grace%20Bourret.png", 
+                              /*email*/"gbourret@stfx.ca", 
+                              /*phone number*/"(902) 867-4535", 
+                              /*role/position*/"Diversity, Outreach, & Engagement Librarian");
+  const kaitlin = new Librarian("Kaitlin Fuller", 
+                                /*subjects*/["Education", "Health", "Human Kinetics", "Human Nutrition", "Nursing"],
+                                /*picture*/"/sites/default/files/images/Library%20-%20Kaitlin_Fuller_300x400_web.png", 
+                                /*email*/"kfuller@stfx.ca", 
+                                /*phone number*/"(902) 867-2407", 
+                                /*role/position*/"Health Sciences & Scholarly Communications Librarian");
+  const laurinda = new Librarian("Laurinda Matheson", 
+                                 /*subjects*/["Catholic Studies", "Celtic Studies", "Classical Studies", "English", "Music", "Philosophy", "Religious Studies"],
+                                 /*picture*/"/sites/default/files/images/LaurindaMatheson.png", 
+                                 /*email*/"lmmathes@stfx.ca", 
+                                 /*phone number*/"(902) 867-4883", 
+                                 /*role/position*/"Special Collections & Research Services Librarian");
+  const margaret = new Librarian("Margaret Vail", 
+                                 /*subjects*/["Business", "Chemistry", "Computer Science", "Engineering", "Math & Statistics", "Physics"],
+                                 /*picture*/"/sites/default/files/images/Library%20-%20Margaret%20Vail%20-%20headshot%20cropped%20-%202023.png", 
+                                 /*email*/"mvail@stfx.ca", 
+                                 /*phone number*/"(902) 867-4869", 
+                                 /*role/position*/"Systems & Data Services Librarian");
+  const susan = new Librarian("Susan Cameron", 
+                              /*subjects*/["Adult Education", "Economics", "History", "Political Science", "Public Policy & Gov"],
+                              /*picture*/"/sites/default/files/images/Susan%20Cameron.png", 
+                              /*email*/"scameron@stfx.ca", 
+                              /*phone number*/"(902) 867-4535", 
+                              /*role/position*/"Collections Librarian");
+  const samantha = new Librarian("Samantha Read", 
+                                 /*subjects*/["Aquatic Resources", "Biology", "Climate & Env", "Earth Sciences", "Modern Languages", "Psychology"],
+                                 /*picture*/"https://www.stfx.ca/themes/custom/de_theme/logo.svg", 
+                                 /*email*/"sread@stfx.ca", 
+                                 /*phone number*/"", 
+                                 /*role/position*/"Instructional Services Librarian");
+  const librarians = [grace, susan, kaitlin, laurinda, samantha, margaret]
+  function displayLibrarians() {
+    var libContainer = document.getElementById("liaison-librarians");
+    var librarian, libHeader, libInfo, libPic, libPicSpan, libContact, libMailto, mailto, libSubs, libSub, i, o;
+    for (i = 0; i < librarians.length; i++) {
+      librarian = document.createElement("div");
+      librarian.setAttribute("class", "librarian-section");
+      libHeader = document.createElement("h2");
+      libHeader.setAttribute("class", "librarian-full-name");
+      libHeader.classList.add("group--contact");
+      libHeader.innerText = librarians[i].libName;
+      libInfo = document.createElement("p");
+      libInfo.setAttribute("class", "librarian-position");
+      libInfo.innerText = librarians[i].libRole;
+      libPicSpan = document.createElement("span");
+      libPic = document.createElement("img");
+      libPic.setAttribute("class", "librarian-picture");
+      libPicSpan.setAttribute("class", "librarian-picture");
+      libPic.setAttribute("src", librarians[i].libPhoto);
+      libPicSpan.appendChild(libPic);
+      libContactSpan = document.createElement("span");
+      libContact = document.createElement("p");
+      libContact.setAttribute("class", "librarian-contacts");
+      libContactSpan.setAttribute("class", "librarian-contacts");
+      libContact.innerHTML = librarians[i].libPhone;
+      libMailto = document.createElement("a");
+      libMailto.setAttribute("class", "librarian-contacts");
+      libMailto.innerText = librarians[i].libEmail;
+      mailto = "mailto:" + librarians[i].libEmail;
+      libMailto.setAttribute("href", mailto);
+      libContactSpan.appendChild(libContact);
+      libContactSpan.appendChild(libMailto);
+      libSubs = document.createElement("ol");
+      for (o = 0; o < librarians[i].libSubjects.length; o++) {
+        libSub = document.createElement("li");
+        libSub.innerText = librarians[i].libSubjects[o];
+        libSubs.appendChild(libSub);
+      }
+      librarian.appendChild(libHeader);
+      librarian.appendChild(libInfo);
+      librarian.appendChild(libPicSpan);
+      librarian.appendChild(libContactSpan);
+      librarian.appendChild(libSubs);
+      libContainer.appendChild(librarian);
     }
-
-    displayLibrarians();
-
+  }
+  displayLibrarians();
 </script>
-<style>
-     *, *:before, *:after {
-        box-sizing: border-box;
-    }
-    #liaison-librarians {
-        display: flex;
-        color: black !important;
-        width: 100%;
-        height: 100%;
-        flex-flow: row wrap;
-        align-content: stretch;
-        padding: 0rem 0rem;
-    }
+<style type="text/css">*, *:before, *:after {
+  box-sizing: border-box;
+  }
+  #liaison-librarians {
+    display: flex;
+    color: black !important;
+    width: 100%;
+    height: 100%;
+    flex-flow: row wrap;
+    align-content: stretch;
+    padding: 0rem 0rem;
+  }
+  .librarian-section {
+    flex: 1 0 auto;
+    float: left;
+    width: 30%;
+    padding: 0.75rem;
+    margin: 0.25rem;
+    background-color: #F7F7F7;
+    border: 1px solid #f0f0ff;
+  }
+  h2.librarian-full-name {
+    font-family: inherit;
+    text-transform: uppercase;
+    color: #000000;
+    display: inline-block;
+    width: 100%;
+    vertical-align: baseline;
+    line-height: 1;
+    font-size: 1rem;
+  }
+  h2.librarian-full-name::after {
+    content: '';
+    display: block;
+    width: 80%;
+    border-bottom: 3px solid #D5A845;
+    margin: 0.625rem 0 0 0;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+  }
+  p.librarian-position {
+    font-weight: bold;
+    height: 4rem;
+    line-height: 1rem;
+  }
+  .librarian-section ol {
+    margin: 0 auto;
+    display: inline-grid;
+    width: 100%;
+    padding-left: 0px;
+    list-style: none;
+    justify-items: center;
+  }
+  .librarian-section ol li{
+    list-style: none;
+    margin-bottom: 0.25rem;
+    line-height: 16px;
+    color: black !important;
+    display: block;
+    width: max-content;
+    font-weight: bold;
+  }
+  p.librarian-contacts {
+    color: black !important;
+    line-height: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    width: max-content;
+    margin: 0 auto;
+  }
+  a.librarian-contacts{
+    margin: 0 auto;
+    width: max-content;
+  }
+  span.librarian-contacts{
+    display: inline-grid;
+    width: 100%;
+    padding: 1rem;
+  }
+  .title-list {
+    height:100%;
+    display: block;
+    float: right;
+    width: calc(100% - 85px);
+  }
+  span.librarian-picture {
+    display: inline-grid;
+    width: 100%;
+    margin: 0 auto;
+  }
+  img.librarian-picture {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .page-title {
+    margin: 0.25rem !important;
+  }
+  body:not(.show-banner) .section-content > :first-child {
+    margin-top: 1rem !important;
+  }
+  .layout__region .block {
+    margin-bottom: 0.25rem !important;
+  }
+  @media only screen and (max-width: 768px) {
     .librarian-section {
-        flex: 1 0 auto;
-        float: left;
-        width: 30%;
-        padding: 0.75rem;
-        margin: 0.25rem;
-        background-color: #F7F7F7;
-        border: 1px solid #f0f0ff;
+      flex: 1 0 auto;
+      float: left;
+      max-width: calc(100% / 1);
+      min-width: 250px;
     }
-    h2.librarian-full-name {
-        font-family: inherit;
-        text-transform: uppercase;
-        color: #000000;
-        display: inline-block;
-        width: 100%;
-        vertical-align: baseline;
-        line-height: 1;
-        font-size: 1rem;
-    }
-    h2.librarian-full-name::after {
-        content: '';
-        display: block;
-        width: 80%;
-        border-bottom: 3px solid #D5A845;
-        margin: 0.625rem 0 0 0;
-        -webkit-transition: width 1s;
-        transition: width 1s;
-    }
-
     p.librarian-position {
-        font-weight: bold;
-        height: 4rem;
-        line-height: 1rem;
+      height: 2rem;
     }
-
-    .librarian-section ol {
-        margin: 0 auto;
-        display: inline-grid;
-        width: 100%;
-        padding-left: 0px;
-        list-style: none;
-        justify-items: center;
-    }
-    .librarian-section ol li{
-        list-style: none;
-        margin-bottom: 0.25rem;
-        line-height: 16px;
-        color: black !important;
-        display: block;
-        width: max-content;
-        font-weight: bold;
-    }
-    p.librarian-contacts {
-        color: black !important;
-        line-height: 16px;
-        font-weight: 500;
-        text-decoration: none;
-        width: max-content;
-        margin: 0 auto;
-    }
-    a.librarian-contacts{
-        margin: 0 auto;
-        width: max-content;
-    }
-    span.librarian-contacts{
-        display: inline-grid;
-        width: 100%;
-        padding: 1rem;
-    }
-    .title-list {
-        height:100%;
-        display: block;
-        float: right;
-        width: calc(100% - 85px);
-    }
-    
-    span.librarian-picture {
-        display: inline-grid;
-        width: 100%;
-        margin: 0 auto;
-
-    }
-
-   img.librarian-picture {
-        width: 100%;
-        height: auto;
-        margin: 0 auto;
-    }
-    
-    .page-title {
-        margin: 0.25rem !important;
-    }
-    body:not(.show-banner) .section-content > :first-child {
-        margin-top: 1rem !important;
-    }
-    .layout__region .block {
-        margin-bottom: 0.25rem !important;
-    }
-    @media only screen and (max-width: 768px) {
-        .librarian-section {
-        flex: 1 0 auto;
-        float: left;
-        max-width: calc(100% / 1);
-        min-width: 250px;
-        }
-    p.librarian-position {
-        height: 2rem;
-    }
-    }
+  }
 </style>
