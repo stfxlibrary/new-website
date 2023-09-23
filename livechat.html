@@ -1,43 +1,25 @@
 <!-- HTML for Live Chat AND JavaScript for Live Chat and Hours (inline) code can be found here: https://github.com/stfxlibrary/new-website/blob/main/livechat.html -->
 <div id="stfx-live-chat">
-<div class="processed" id="librariesChatWidget">
-  <script type = "text/javascript" src="//ca.libraryh3lp.com/js/libraryh3lp.js?multi">
-  </script>
-</div>
-<div class="needs-js">Chat requires JavaScript.
-</div>
-<div class="libraryh3lp" jid="novanet@chat.ca.libraryh3lp.com" style="display: none;">
-  <iframe frameborder="1" src="//ca.libraryh3lp.com/chat/novanet@chat.ca.libraryh3lp.com?skin=15907" style="border: 1px solid #ccddff; width: 100%; height: 300px;">
-  </iframe>
-</div>
-<div class="libraryh3lp" style="display: none;">
-  <div class="offline_box"><b>Live Help is offline.</b>
-    <br />
-    See our <a href="https://www.stfx.ca/library/help/live-help">Live Help Hours</a>.
+  <div class="processed" id="librariesChatWidget">
+    <script type = "text/javascript" src="//ca.libraryh3lp.com/js/libraryh3lp.js?multi">
+    </script>
+  </div>
+  <div class="needs-js">Chat requires JavaScript.
+  </div>
+  <div class="libraryh3lp" jid="novanet@chat.ca.libraryh3lp.com" style="display: none;">
+    <iframe frameborder="1" src="//ca.libraryh3lp.com/chat/novanet@chat.ca.libraryh3lp.com?skin=15907" style="border: 1px solid #ccddff; width: 100%; height: 300px;">
+    </iframe>
+  </div>
+  <div class="libraryh3lp" style="display: none;">
+    <div class="offline_box"><b>Live Help is offline.</b>
+      <br />
+      See our <a href="https://www.stfx.ca/library/help/live-help">Live Help Hours</a>.
+    </div>
   </div>
 </div>
-</div>
-
-<script defer="true">
-    function oneLine() {
-        const chatbox = document.getElementById("stfx-live-chat");
-        const hours = document.getElementById("s_lc_tdh_950_0");
-        var hoursbox = hours.parentElement;
-        while (hoursbox.className != "in-multicolumn block block-layout-builder block-inline-block--basic"){
-            hoursbox = hoursbox.parentElement;
-        }
-        var livebox = chatbox.parentElement;
-        while (livebox.className != "in-multicolumn block block-layout-builder block-inline-block--basic"){
-            livebox = livebox.parentElement;
-        }
-        livebox.remove();
-        hoursbox.insertAdjacentElement("beforeend", livebox);
-        hoursbox.style.display = "inline-block";
-        livebox.style.display = "inline-block";
-        livebox.style.verticalAlign = "top";
-        livebox.style.margin = "0.5rem";
-        hoursbox.firstElementChild.style.display = "inline-block";
-        livebox.firstElementChild.style.display = "inline-block";
-    }
-    setTimeout(oneLine, 500);
+<script>
+  function hideChat() {
+    document.getElementById("chat-widget-container").style.visibility = "hidden";
+  }
+  setTimeout(hideChat, 500);
 </script>
