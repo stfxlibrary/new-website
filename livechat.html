@@ -21,7 +21,9 @@
 <script>
   function hideChat() {
     document.getElementById("chat-widget-container").style.visibility = "hidden";
+    if (document.getElementById("livechat-eye-catcher").style){
     document.getElementById("livechat-eye-catcher").style.visibility = "hidden";
+    }
   }
   setTimeout(hideChat, 1000);
   setTimeout(hideChat, 1000);
