@@ -20,9 +20,12 @@
 </div>
 <script>
   function hideChat() {
-    document.getElementById("chat-widget-container").style.visibility = "hidden";
-    if (document.getElementById("livechat-eye-catcher").style){
-    document.getElementById("livechat-eye-catcher").style.visibility = "hidden";
+    document.getElementById("chat-widget-container").remove();
+    if (document.getElementById("livechat-eye-catcher")){
+    document.getElementById("livechat-eye-catcher").remove();
+    }
+    if (document.getElementById("livechat-eye-catcher-img")){
+    document.getElementById("livechat-eye-catcher-img").remove();
     }
   }
   setTimeout(hideChat, 1000);
