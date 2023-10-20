@@ -20,7 +20,9 @@
 </div>
 <script>
   function hideChat() {
+    if (document.getElementById("chat-widget-container")){
     document.getElementById("chat-widget-container").remove();
+    }
     if (document.getElementById("livechat-eye-catcher")){
     document.getElementById("livechat-eye-catcher").remove();
     }
