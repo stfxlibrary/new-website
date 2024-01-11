@@ -1,42 +1,32 @@
 <!-- JavaScript and CSS for Subject Guide Dropdown Widget code can be found here: https://github.com/stfxlibrary/new-website/blob/main/libguide-dropdown.html -->
 <!-- Expanded from Springshares Subject Widget, information can be found here: https://ask.springshare.com/libguides/faq/810 -->
 <!-- Configuration for all springshare widgets can be found here: https://github.com/stfxlibrary/new-website/edit/main/README.md -->
-<script>springshare_widget_config_1700854974764 = { path: 'guides', link_text: 'Guides' };</script><div id="s-lg-widget-1700854974764"></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://lgapi-ca.libapps.com/widgets.php?site_id=877&widget_type=1&search_terms=&search_match=2&sort_by=name&list_format=2&drop_text=Select+a+Guide...&output_format=1&load_type=2&enable_description=0&enable_group_search_limit=0&enable_subject_search_limit=1&guide_types%5B0%5D=3&widget_title=Guide+List&widget_height=250&widget_width=100%25&widget_link_color=2954d1&widget_embed_type=1&num_results=0&enable_more_results=0&window_target=2&config_id=1700854974764";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","s-lg-widget-script-1700854974764");</script>
+<script>springshare_widget_config_1705002997637 = { path: 'guides', link_text: 'Guides' };</script><div id="s-lg-widget-1705002997637"></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://lgapi-ca.libapps.com/widgets.php?site_id=877&widget_type=1&search_terms=&search_match=2&sort_by=name&list_format=2&drop_text=Select+a+Guide...&output_format=1&load_type=2&enable_description=0&enable_group_search_limit=0&enable_subject_search_limit=0&guide_types%5B0%5D=3&widget_title=Guide+List&widget_height=250&widget_width=100%25&widget_link_color=2954d1&widget_embed_type=1&num_results=0&enable_more_results=0&window_target=1&config_id=1705002997637";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","s-lg-widget-script-1705002997637");</script>
+
 <script>
+
     function fixDropdown(){
-        const searchForm = document.getElementById("s-lg-frm-subject-widget-1700854974764");
-        var select = document.getElementById("s-lg-sel-guide-widget-1700854974764");
+        const searchForm = document.getElementById("s-lg-frm-guide-widget-1705002997637");
+        var select = document.getElementById("s-lg-sel-guide-widget-1705002997637");
         var selectOptions = select.options;
+        selectOptions[0].value = "";
         var selectLabel = select.previousElementSibling;
         selectLabel.innerText = "Start your research here: ";
-        selectLabel.id = "s-lg-lbl-subject-widget-1700854974764";
-        selectOptions[0].value = "https://stfx.libguides.com/";
+        selectLabel.id = "s-lg-lbl-guide-widget-1705002997637";
         var selectButton = select.nextElementSibling;
-        selectButton.id = "s-lg-btn-subject-widget-1700854974764";
+        selectButton.id = "s-lg-btn-guide-widget-1705002997637";
         selectButton.style.visibility = "hidden";
-        var selBtnAct = selectButton.getAttribute("onclick");
-        for (i = 1; i < selectOptions.length; i++){
-            /*
-            console.log(selectOptions[i]);
-            console.log(selectOptions[i].value);
-            console.log(String(selectOptions[i].value).includes("sb.php"));
-            console.log(selectOptions[i].innerHTML.includes("&nbsp;"));
-            console.log(selectOptions[i].innerHTML);
-            console.log(selectOptions[i].innerText);
-            */
-            if (String(selectOptions[i].value).includes("sb.php")){
-                selectOptions[i].style.display = "none";
+        select.addEventListener("change", () => {
+            document.getElementById('s-lg-btn-guide-widget-1705002997637').click();
             }
-            else{
-                selectOptions[i].innerHTML = String(selectOptions[i].innerHTML).replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", "");
-                selectOptions[i].setAttribute("class", "s-lg-opt-subject-widget-1700854974764");
-                selectOptions[i].setAttribute("onclick", selBtnAct);
-            }
+        );
+        for (i=0; i<selectOptions.length; i++){
+            selectOptions[i].setAttribute("class", "s-lg-opt-guide-widget-1705002997637");
         }
-
     }
     setTimeout(fixDropdown, 500);
 </script>
+
 <style>
     :root {
         --stfx: #001b40;
@@ -47,21 +37,21 @@
         --pumpkin: #d35d33;
         --leaf: #b1cd49;
     }
-    #s-lg-widget-1700854974764 {
+    #s-lg-widget-1705002997637 {
         height: min-content !important;
         font-size: larger !important;
         margin-top: 1rem;
     }
-    #s-lg-frm-guide-widget-1700854974764 {
-        width: max-content;
+    #s-lg-frm-guide-widget-1705002997637 {
+        
         margin: 0 auto;
     }
-    #s-lg-lbl-subject-widget-1700854974764{
+    #s-lg-lbl-guide-widget-1705002997637{
         margin-bottom: 0;
         margin-right: 0.5rem;
         font-weight: bold;
     }
-    #s-lg-sel-guide-widget-1700854974764 {
+    #s-lg-sel-guide-widget-1705002997637 {
         /* styling */
         background-color: white;
         outline: 2px solid var(--stfx);
@@ -72,12 +62,13 @@
         margin: 0;
         border: none;
         border-right: 0.25em solid white;
+        width:calc(100% - 16rem);
     }
-    #s-lg-sel-guide-widget-1700854974764::after {
+    #s-lg-sel-guide-widget-1705002997637::after {
         display: none;
     }
 
-    #s-lg-btn-guide-widget-1700854974764 {
+    #s-lg-btn-guide-widget-1705002997637 {
         background-color: var(--stfx);
         outline: 2px solid var(--stfx);
         border-radius: 0px 4px 4px 0px;
@@ -89,7 +80,7 @@
         border:none;
     }
 
-    #s-lg-btn-guide-widget-1700854974764:hover {
+    #s-lg-btn-guide-widget-1705002997637:hover {
         cursor: pointer;
     }
 </style>
