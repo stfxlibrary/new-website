@@ -14,7 +14,7 @@
     }
   }
   const grace = new Librarian("Grace Bourret", 
-                              /*subjects*/["Anthropology", "Art", "Development Studies", "Philosophy", "Sociology", "Women's & Gender St."],
+                              /*subjects*/["Anthropology", "Art", "Development Studies", "History", "Sociology", "Women's & Gender St."],
                               /*picture*/"/sites/default/files/images/Library%20-%20Grace%20Bourret.png", 
                               /*email*/"gbourret@stfx.ca", 
                               /*phone number*/"(902) 867-4535", 
@@ -26,30 +26,30 @@
                                 /*phone number*/"(902) 867-2407", 
                                 /*role/position*/"Health Sciences & Scholarly Communications Librarian");
   const laurinda = new Librarian("Laurinda Matheson", 
-                                 /*subjects*/["On Sabbatical"],
+                                 /*subjects*/["Catholic Studies", "Celtic Studies", "Classical Studies", "English", "Music", "Philosophy", "Religious Studies"],
                                  /*picture*/"/sites/default/files/images/LaurindaMatheson.png", 
                                  /*email*/"lmmathes@stfx.ca", 
                                  /*phone number*/"(902) 867-4883", 
                                  /*role/position*/"Special Collections & Research Services Librarian");
   const margaret = new Librarian("Margaret Vail", 
-                                 /*subjects*/["Business", "Chemistry", "Computer Science", "Engineering", "Math & Statistics", "Physics"],
+                                 /*subjects*/["Biology", "Climate & Env", "Chemistry", "Computer Science", "Engineering", "Math & Statistics", "Physics"],
                                  /*picture*/"/sites/default/files/images/Margaret-Xavarian-Website.png", 
                                  /*email*/"mvail@stfx.ca", 
                                  /*phone number*/"(902) 867-4869", 
-                                 /*role/position*/"Systems & Data Services Librarian");
-  const susan = new Librarian("Susan Cameron", 
-                              /*subjects*/["Catholic Studies", "Celtic Studies", "Classical Studies", "Economics", "History", "Music", "Political Science", "Public Policy & Gov", "Religious Studies"],
-                              /*picture*/"/sites/default/files/images/Susan_Cameron _220x306.jpg", 
-                              /*email*/"scameron@stfx.ca", 
-                              /*phone number*/"(902) 867-4535", 
-                              /*role/position*/"Collections Librarian");
+                                 /*role/position*/"Systems & Technical Services Librarian");
   const samantha = new Librarian("Samantha Read", 
-                                 /*subjects*/["Aquatic Resources", "Biology", "Climate & Env", "Earth & Env Sciences", "English", "Modern Languages","Psychology"],
+                                 /*subjects*/["Aquatic Resources", "Business", "Earth & Env Sciences", "English", "Modern Languages","Psychology"],
                                  /*picture*/"/sites/default/files/images/Samantha_Read _220x306.png", 
                                  /*email*/"sread@stfx.ca", 
                                  /*phone number*/"", 
-                                 /*role/position*/"Instructional Services Librarian");
-  const librarians = [grace, susan, kaitlin, laurinda, samantha, margaret]
+                                 /*role/position*/"Digital Initiatives & Data Services Librarian");
+  const placeholder = new Librarian("", 
+                                 /*subjects*/[""],
+                                 /*picture*/"", 
+                                 /*email*/" ", 
+                                 /*phone number*/"", 
+                                 /*role/position*/"");    
+  const librarians = [grace, kaitlin, laurinda, samantha, margaret, placeholder]
   function displayLibrarians() {
     var libContainer = document.getElementById("liaison-librarians");
     var librarian, libHeader, libInfo, libPic, libPicSpan, libContact, libMailto, mailto, libSubs, libSub, i, o;
