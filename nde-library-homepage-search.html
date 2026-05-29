@@ -32,7 +32,7 @@
             this.sURL = sURL;
         }
     }
-    nov = new Resource("nov", "Novanet", "Find books, eBooks, journal articles, and more from Novanet member libraries.", [["All", ""], ["Books", "&mfacet=rtype,include,books,1,lk"], ["Articles", "&mfacet=rtype,include,articles,1,lk"]], [["Novanet Advanced Search", "https://stfx.novanet.ca/nde/search?vid=01NOVA_STFX:STFX&lang=en&mode=advanced"], ["Search WorldCat", "https://stfx.on.worldcat.org/nde"]], ["https://stfx.novanet.ca/nde/search?query=any,contains,", "&tab=Everything&search_scope=Everything&vid=01NOVA_STFX:NDE&mode=simple", ""]);
+    nov = new Resource("nov", "Novanet", "Find books, eBooks, journal articles, and more from Novanet member libraries.", [["All", ""], ["Books", ",AND;rtype,exact,books"], ["Articles", ",AND;rtype,exact,articles"]], [["Novanet Advanced Search", "https://stfx.novanet.ca/nde/home?vid=01NOVA_STFX:NDE&lang=en&mode=advanced"], ["Search WorldCat", "https://stfx.on.worldcat.org/nde"]], ["https://stfx.novanet.ca/nde/search?query=any,contains,", "&tab=Everything&search_scope=Everything&vid=01NOVA_STFX:NDE&mode=advanced", ""]);
 
     dat = new Resource("dat", "Databases", "Find databases by name.", [], [["Browse Database A-Z List", "https://stfx.libguides.com/az.php"]], ["https://stfx.libguides.com/az.php?q="]);
 
@@ -62,7 +62,7 @@
                 nURL = sel.sURL[0] + txt + sel.sURL[1];
                 break;
             case 3:
-                nURL = sel.sURL[0] + txt + sel.sURL[1] + tspec + sel.sURL[2];
+                nURL = sel.sURL[0] + txt + tspec + sel.sURL[1] + sel.sURL[2];
                 break;
             case 4:
                 nURL = sel.sURL[0] + tspec + sel.sURL[1] + txt + sel.sURL[2] + sel.sURL[3];
